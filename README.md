@@ -1,14 +1,46 @@
-# filmes-api
+<p align="center">
+  <h1 align="center">Filmes API</h1>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+## 👤 Integrantes: 
+>Ana Clara Gomes, Gabriel Lima de Souza, Kethelyn Talia Verner, e Vítor Mendes Salomão
+## Filmes API
 
-## Recommended IDE Setup
+>.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## ⚒️ Ferramentas para desenvolvimento:
+> Ferramentas geralmente serão sites com algum conteúdo pronto ou customizavel que você possa aplicar no projeto, fazendo assim que você economize tempo no seu desenvolvimento.
+<table style="display: flex;">
+  <tr>
+    <th style="background-color: #f2f2f2;">Ferramenta</th>
+    <th>Utilidade</th>
+  </tr>
+  <tr>
+    <td>Vue.js3</td>
+    <td>O Vue. js é um framework Javascript open source bastante conhecido pela sua reatividade.</td>
+  </tr>
+  <tr>
+    <td>Bootstrap 5</td>
+    <td>O Bootstrap oferece muito mais utilidade que a simples estilização de elementos.</td>
+  </tr>
+  <tr>
+    <td>Vuetify 3</td>
+    <td>É uma biblioteca de componentes do Vue3.</td>
+  </tr>
+  <tr>
+    <td>Axios</td>
+    <td>O Axios é um biblioteca que permite uma integração do seu projeto React para qualquer serviço de API disponível.</td>
+  </tr>
+  <tr>
+    <td>API TMDB</td>
+    <td>É uma base de dados grátis e de código aberto sobre Filmes e Séries de TV.  </td>
+  </tr>
+  <tr>
+    <td>MySQL Workbench</td>
+    <td>Pode-se executar consultas SQL, administrar o sistema e modelar, criar e manter a base de dados através de um ambiente integrado.</td>
+  </tr>
+</table>
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
