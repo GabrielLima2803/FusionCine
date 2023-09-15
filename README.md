@@ -22,6 +22,10 @@
     <td>Bootstrap 5</td>
     <td>O Bootstrap oferece muito mais utilidade que a simples estilização de elementos.</td>
   </tr>
+    <tr>
+    <td>Bootstrap Icons</td>
+    <td>É uma biblioteca de icons do bootstrap.</td>
+  </tr>
   <tr>
     <td>Vuetify 3</td>
     <td>É uma biblioteca de componentes do Vue3.</td>
