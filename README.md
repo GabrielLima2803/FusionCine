@@ -1,12 +1,11 @@
 <p align="center">
-  <h1 align="center">Filmes API</h1>
+  <h1 align="center">FusionCine</h1>
 </p>
 
 ## 👤 Integrantes: 
 >Ana Clara Gomes, Gabriel Lima de Souza, Kethelyn Talia Verner, e Vítor Mendes Salomão
-## Filmes API
-
->.
+## FusionCine
+> FusionCine
 
 ## ⚒️ Ferramentas para desenvolvimento:
 > Ferramentas geralmente serão sites com algum conteúdo pronto ou customizavel que você possa aplicar no projeto, fazendo assim que você economize tempo no seu desenvolvimento.
