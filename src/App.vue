@@ -1,0 +1,35 @@
+<script setup>
+import axios from 'axios';
+import {ref} from 'vue'
+import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
+
+const movies = ref([]); 
+
+const apiKey = '92a1cf3ee1f043920c17b8cff26b95e8';
+const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`;
+
+axios.get(apiUrl)
+  .then((response) => {
+    movies.value = response.data.results; 
+  })
+  .catch((error) => {
+    console.error('Erro ao buscar a lista de filmes:', error);
+  });
+
+</script>
+
+<template>
+  <header-principal/>
+  <div>
+    <h1>Lista de Filmes</h1>
+    <ul>
+      <li v-for="movie in movies" :key="movie.id">
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.overview }}</p>
+        <p>{{ movie.release_date }}</p>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<style scoped></style>
