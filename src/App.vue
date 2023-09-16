@@ -2,10 +2,11 @@
 import axios from 'axios'
 import { ref } from 'vue'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue'
+import FullFooter from './components/footer/FullFooter.vue';
 
 const movies = ref([])
 const apiKey = '92a1cf3ee1f043920c17b8cff26b95e8'
-const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`
+const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`
 
 axios.get(apiUrl)
   .then((response) => {
@@ -32,10 +33,11 @@ const getMoviePosterUrl = (posterPath) => {
         <h2>{{ movie.title }}</h2>
         <p>{{ movie.overview }}</p>
         <p>{{ movie.release_date }}</p>
-        <img :src="getMoviePosterUrl(movie.poster_path)" alt="" />
+        <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150" />
       </li>
     </ul>
   </div>
+  <full-footer/>
 </template>
 
 <style scoped></style>
