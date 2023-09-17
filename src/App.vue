@@ -23,6 +23,7 @@ const getMoviePosterUrl = (posterPath) => {
   // Retorne uma imagem de fallback ou uma URL vazia se não houver um caminho de pôster.
   return 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg'
 }
+
 </script>
 <template>
   <header-principal />

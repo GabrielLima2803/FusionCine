@@ -1,4 +1,5 @@
-<script setup >
+<script setup>
+
 </script>
 
 <template>
@@ -29,15 +30,11 @@
                 <div class="FSL">
                     <div class="search">
                         <i class="bi bi-search colorSearch marginS"></i>
-                        <p class="marginS">Buscar</p>
+                        <p class="marginS pbuscar">Buscar</p>
                     </div>
                     <div class="WrapFL">
                         <i class="bi bi-heart favorito"></i>
                         <i class="bi bi-person login"></i>
-                        <label>
-                            <input type="checkbox">
-                            <ion-icon name="moon-outline" class="moon"></ion-icon>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -54,13 +51,29 @@
     /* Centraliza verticalmente */
     background-color: #D9D9D9;
 }
+.pbuscar{
+    margin-top: 4px;
+}
+i {
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.dark-mode {
+    background: black;
+    color: white;
+    transition: 1s;
+}
 
 .marginS {
     margin-left: 4px;
 }
-.linksTop{
+
+.linksTop {
     margin-right: 39px;
 }
+
 .house {
     margin-right: auto;
     padding: 3px;
@@ -73,11 +86,13 @@
     padding-left: 15px;
     cursor: pointer;
 }
-.borde-Ultimo{
+
+.borde-Ultimo {
     padding-right: 15px;
     padding-left: 15px;
     cursor: pointer;
 }
+
 .color-house {
     color: gray;
 }
@@ -169,7 +184,7 @@ p {
 }
 
 .login {
-    margin-left: 25px;
+    margin-left: 10px;
     font-size: 22px;
     cursor: pointer;
 }
@@ -182,4 +197,5 @@ p {
 
 span {
     font-size: 16px;
-}</style>
+}
+</style>
