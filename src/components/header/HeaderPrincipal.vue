@@ -19,12 +19,12 @@
                 <img src="@/assets/img/header/Logo.png" alt="" width="100">
             </div>
             <div class="header__links">
-                <span class="links-2">Filmes</span>
-                <span class="links-2">Séries</span>
-                <span class="links-2">Pessoas</span>
-                <span class="links-2">Discussões</span>
-                <span class="links-2">Suporte</span>
-                <span class="links-2 F">Mais</span>
+                <span class="links-2 hvr-underline-from-center">Filmes</span>
+                <span class="links-2 hvr-underline-from-center">Séries</span>
+                <span class="links-2 hvr-underline-from-center">Pessoas</span>
+                <span class="links-2 hvr-underline-from-center">Discussões</span>
+                <span class="links-2 hvr-underline-from-center">Suporte</span>
+                <span class="links-2 F hvr-underline-from-center">Mais</span>
             </div>
             <div class="header__rest">
                 <div class="FSL">
@@ -59,13 +59,36 @@ i {
     cursor: pointer;
 
 }
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
 
-.dark-mode {
-    background: black;
-    color: white;
-    transition: 1s;
 }
-
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  bottom: 0;
+  background: #ffffff;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
 .marginS {
     margin-left: 4px;
 }
