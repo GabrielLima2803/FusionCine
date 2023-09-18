@@ -1,55 +1,106 @@
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue'
 import FullFooter from '@/components/footer/FullFooter.vue'
 import CardBox from '@/components/card/CardBox.vue'
 
 const movies = ref([])
-const apiKey = '92a1cf3ee1f043920c17b8cff26b95e8'
-const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`
+const tvs = ref([])
+const currentPage = ref(1);
+
+const moviesGenres = ref([])
+const TVGenres = ref([])
+// const movies = ref([])
+
+// Genêros de Filmes e Séries  
+
+onMounted(async () => {
+  let response = await axios.get('https://api.themoviedb.org/3/genre/movie/list?language=pt-BR', {
+    headers: {
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmExY2YzZWUxZjA0MzkyMGMxN2I4Y2ZmMjZiOTVlOCIsInN1YiI6IjY0ZmYxNTcxMmRmZmQ4MDBhZGI2ZjlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9mkPip-VR_aTvrIw61NobRPhAcfE1KiG-yzIfX6COaM`
+    }
+  })
+  moviesGenres.value = response.data.genres
+  response =  await axios.get('https://api.themoviedb.org/3/genre/tv/list?language=pt-BR', {
+    headers: {
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmExY2YzZWUxZjA0MzkyMGMxN2I4Y2ZmMjZiOTVlOCIsInN1YiI6IjY0ZmYxNTcxMmRmZmQ4MDBhZGI2ZjlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9mkPip-VR_aTvrIw61NobRPhAcfE1KiG-yzIfX6COaM`
+    }
+  })
+  TVGenres.value = response.data.genres
+})
+
+// Filmes e Séries
+
+onMounted(async () => {
+  try {
+    let movieResponse = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=pt-BR&page=1&sort_by=popularity.desc`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmExY2YzZWUxZjA0MzkyMGMxN2I4Y2ZmMjZiOTVlOCIsInN1YiI6IjY0ZmYxNTcxMmRmZmQ4MDBhZGI2ZjlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9mkPip-VR_aTvrIw61NobRPhAcfE1KiG-yzIfX6COaM'
+      }
+    });
+    
+    let tvResponse = await axios.get('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=true&language=pt-BR&page=1&sort_by=popularity.desc', {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmExY2YzZWUxZjA0MzkyMGMxN2I4Y2ZmMjZiOTVlOCIsInN1YiI6IjY0ZmYxNTcxMmRmZmQ4MDBhZGI2ZjlhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9mkPip-VR_aTvrIw61NobRPhAcfE1KiG-yzIfX6COaM'
+      }
+    });
+
+    movies.value = movieResponse.data.results;
+    tvs.value = tvResponse.data.results;
+  } catch (error) {
+    console.error('Erro ao buscar os dados da API:', error);
+  }
+});
+
+// Carregar as Imagem dos Poster
+
 const getMoviePosterUrl = (posterPath) => {
   if (posterPath) {
     return `https://image.tmdb.org/t/p/w500/${posterPath}`
   }
-  // Retorne uma imagem de fallback ou uma URL vazia se não houver um caminho de pôster.
+  // Retorne uma imagem de fallback.
   return 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg'
 }
 
-const fetchMovies = async (url) => {
-  try {
-    const response = await axios.get(url)
-    return response.data.results
-  } catch (error) {
-    console.error('Erro ao buscar a lista de filmes:', error)
-    return []
-  }
-}
 
 const loadMoreMovies = async () => {
-  const nextPage = movies.value.length / 20 + 1 // Calcula a próxima página
-  const apiUrlNextPage = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=${nextPage}`
-  const nextMovies = await fetchMovies(apiUrlNextPage)
-  movies.value = [...movies.value, ...nextMovies]
-}
+  currentPage.value++; // Incrementa o número da página
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=pt-BR&page=${currentPage.value}&sort_by=popularity.desc`, {
+      headers: {
+        Authorization: 'Bearer 92a1cf3ee1f043920c17b8cff26b95e8'
+      }
+    });
 
-// Carregue os filmes da primeira página inicialmente
-;(async () => {
-  const initialMovies = await fetchMovies(apiUrl)
-  movies.value = initialMovies
-})()
+    // Adicione os resultados da API à lista existente de filmes
+    movies.value = [movies.value, response.data.results];
+  } catch (error) {
+    console.error('Erro ao buscar os dados da API:', error);
+  }
+};
 
 </script>
 <template>
   <header-principal />
   <div id="Max">
-    <h1>Lista de Filmes</h1>
-    <ul class="displayImg">
-      <li v-for="movie in movies" :key="movie.id" >
-        <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150"/>
-      </li>
-    </ul>
-    <button @click="loadMoreMovies">Carregar mais filmes</button>
+  <hr>
+  <ul>
+    <h1>Filmes</h1>
+    <li v-for="movie in movies" :key="movie.id">
+      {{ movie.title }}
+      <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150"/>
+    </li>
+    <button @click="loadMoreMovies">Carregar Mais Filmes</button>
+  </ul>
+  <hr>
+  <ul>
+    <h1>Séries</h1>
+    <li v-for="tv in tvs" :key="tv.id">
+      {{ tv.name }}
+      <img :src="getMoviePosterUrl(tv.poster_path)" alt="" width="150"/>
+    </li>
+  </ul>
   <card-box/>
   </div>
   <full-footer />
