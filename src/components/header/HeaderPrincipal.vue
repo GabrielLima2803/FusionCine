@@ -6,7 +6,7 @@
     <header>
         <div id="headerTop">
             <div class="house">
-                <i class="bi bi-house-door color-house"></i>
+            <router-link to="/"><i class="bi bi-house-door color-house"></i></router-link>
             </div>
             <div class="linksTop">
                 <span class="borde">Ajuda</span>
@@ -19,8 +19,8 @@
                 <img src="@/assets/img/header/Logo.png" alt="" width="100">
             </div>
             <div class="header__links">
-                <span class="links-2 hvr-underline-from-center">Filmes</span>
-                <span class="links-2 hvr-underline-from-center">Séries</span>
+                <router-link to="/filmes" class="text-white"><span class="links-2 hvr-underline-from-center">Filmes</span></router-link> 
+                <router-link to="/series" class="text-white"><span class="links-2 hvr-underline-from-center">Séries</span></router-link> 
                 <span class="links-2 hvr-underline-from-center">Pessoas</span>
                 <span class="links-2 hvr-underline-from-center">Discussões</span>
                 <span class="links-2 hvr-underline-from-center">Suporte</span>
@@ -220,5 +220,8 @@ p {
 
 span {
     font-size: 16px;
+}
+router-link{
+    text-decoration: none;
 }
 </style>

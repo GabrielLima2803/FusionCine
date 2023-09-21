@@ -9,6 +9,8 @@ const movies = ref([])
 const tvs = ref([])
 const currentPage = ref(1);
 
+const apiKey = '92a1cf3ee1f043920c17b8cff26b95e8';
+
 const moviesGenres = ref([])
 const TVGenres = ref([])
 // const movies = ref([])
@@ -65,30 +67,28 @@ const getMoviePosterUrl = (posterPath) => {
 
 
 const loadMoreMovies = async () => {
-  currentPage.value++; // Incrementa o número da página
+  currentPage.value++; 
   try {
     const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=pt-BR&page=${currentPage.value}&sort_by=popularity.desc`, {
-      headers: {
-        Authorization: 'Bearer 92a1cf3ee1f043920c17b8cff26b95e8'
-      }
+      headers: { Authorization: `Bearer ${apiKey}` }
     });
 
-    // Adicione os resultados da API à lista existente de filmes
+    // Mescla os resultados à lista existente de filmes
     movies.value = [movies.value, response.data.results];
   } catch (error) {
-    console.error('Erro ao buscar os dados da API:', error);
+    console.error('Erro ao buscar mais filmes da API:', error);
   }
-};
+}
 
 </script>
 <template>
   <header-principal />
   <div id="Max">
-  <hr>
   <ul>
     <h1>Filmes</h1>
     <li v-for="movie in movies" :key="movie.id">
       {{ movie.title }}
+      <br>
       <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150"/>
     </li>
     <button @click="loadMoreMovies">Carregar Mais Filmes</button>
