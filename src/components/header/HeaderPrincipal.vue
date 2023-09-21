@@ -33,8 +33,8 @@
                         <p class="marginS pbuscar">Buscar</p>
                     </div>
                     <div class="WrapFL">
-                        <i class="bi bi-heart favorito"></i>
-                        <i class="bi bi-person login"></i>
+                        <i class="bi bi-heart favorito hover"></i>
+                        <i class="bi bi-person login hover1"></i>
                     </div>
                 </div>
             </div>
@@ -43,6 +43,14 @@
 </template>
 
 <style scoped>
+.hover:hover{
+    font-size: 22px;
+    transition: .6s; 
+}
+.hover1:hover{
+    font-size: 24px;
+    transition: .6s; 
+}
 #headerTop {
     display: flex;
     justify-content: flex-end;

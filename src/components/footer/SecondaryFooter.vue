@@ -1,5 +1,5 @@
 <template>
-    <hr>
+
     <div class="margi footer-bot">
     <div class="">
         <p> © 2023 FusionCIne ©Copyright 2023 FUSION CINE.</p>
@@ -16,6 +16,7 @@
   .footer-bot{
     background-color: black;
     color: white;
+    border-top: solid 1px white;
 
   }
   .margi{
