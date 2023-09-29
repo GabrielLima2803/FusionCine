@@ -34,7 +34,9 @@
                     </div>
                     <div class="WrapFL">
                         <i class="bi bi-heart favorito hover"></i>
-                        <i class="bi bi-person login hover1"></i>
+                        <router-link to="/login">
+                        <i class="bi bi-person login hover1 text-white"></i>
+                        </router-link>
                     </div>
                 </div>
             </div>
