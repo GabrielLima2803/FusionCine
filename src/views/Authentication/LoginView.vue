@@ -1,22 +1,23 @@
 <template>
     <div id="template">
+        <div>
+            
+        </div>
         <div class="container">
             <form class="form-section">
                 <h1>Login</h1>
                 <div class="input-box">
                     <input type="text" required />
-                    <label>Enter your email</label>
+                    <label>Insira seu email</label>
                 </div>
                 <div class="input-box">
                     <input class="password" :type="inputType" required />
-                    <label>Enter your password</label>
+                    <label>Insira sua senha</label>
                     <div class="eye-wrapper" @click="showHide">
                         <span class="close" v-if="!showPassword">
-                            <i class="fa-regular fa-eye-slash"></i>
-                        </span>
+                            <i class="bi bi-eye-slash"></i> </span>
                         <span class="open" v-else>
-                            <i class="fa-regular fa-eye"></i>
-                        </span>
+                            <i class="bi bi-eye"></i> </span>
                     </div>
                 </div>
                 <div class="remember-forgot">
@@ -24,7 +25,7 @@
                         <input type="checkbox" id="remember" />
                         <p>Remember me</p>
                     </label>
-                    <a href="#">Forgot Password?</a>
+                    <a href="#">Esqueceu a senha?</a>
                 </div>
                 <button class="btn-login">login</button>
                 <div class="register">
@@ -49,6 +50,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 :root {
     --white: #ffffff;
     --light-gray: #ffffff80;
@@ -73,7 +75,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     backdrop-filter: blur(01.5em);
     background-color: red;
     text-align: center;
-    border: 0.1em solid  #ffffff80;
+    border: 0.1em solid #ffffff80;
 }
 
 .container .form-section {
@@ -184,7 +186,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 .container .btn-login:hover {
     color: white;
     border-color: white;
-    background-color:  #ffffff80;
+    background-color: #ffffff80;
 }
 
 .register p {
@@ -205,7 +207,8 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     color: white;
     text-decoration: none;
 }
-p{
+
+p {
     margin: 0;
 }
 </style>

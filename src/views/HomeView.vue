@@ -4,6 +4,8 @@ import { ref, onMounted } from 'vue'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue'
 import FullFooter from '@/components/footer/FullFooter.vue'
 import CardBox from '@/components/card/CardBox.vue'
+import CardMovel from '@/components/card/CardMovel.vue'
+
 
 const movies = ref([]);
 const tvs = ref([]);
@@ -13,8 +15,6 @@ const apiKey = '92a1cf3ee1f043920c17b8cff26b95e8';
 // const movies = ref([])
 
 // Filmes e Séries
-
-
 
 onMounted(async () => {
     try {
@@ -74,13 +74,7 @@ onMounted(async () => {
     <button @click="loadMoreMovies">Carregar Mais Filmes</button>
   </ul>
   <hr>
-  <ul>
-    <h1>Séries</h1>
-    <li v-for="tv in tvs" :key="tv.id">
-      {{ tv.name }}
-      <img :src="getMoviePosterUrl(tv.poster_path)" alt="" width="150"/>
-    </li>
-  </ul>
+  <card-movel/>
   <card-box/>
   </div>
   <full-footer />

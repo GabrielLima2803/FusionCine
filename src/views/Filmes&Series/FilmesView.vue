@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue'
 import api from '@/plugins/axios.js'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
+import Loading from 'vue-loading-overlay'
+const isLoading = ref(false);
 // import PreLoader from '../../components/loading/PreLoader.vue';
 // import {isLoading} from '../../components/loading/PreLoader.vue';
 const genres = ref([])
@@ -21,7 +23,7 @@ onMounted(async () => {
 const movies = ref([]);
 
 const listMovies = async (genreId) => {
-  // isLoading.value = true;
+  isLoading.value = true;
   const response = await api.get('discover/movie', {
     params: {
       with_genres: genreId,
@@ -29,6 +31,7 @@ const listMovies = async (genreId) => {
     }
   });
   movies.value = response.data.results
+  isLoading.value = false;
 };
 </script>
 <template>
@@ -40,7 +43,7 @@ const listMovies = async (genreId) => {
         {{ genre.name }}
       </li>
     </ul>
-    <!-- <pre-loader v-model:active="isLoading" is-full-page /> -->
+    <loading v-model:active="isLoading" is-full-page />
   </div>
   <div class="movie-list">
     <div v-for="movie in movies" :key="movie.id" class="movie-card">
