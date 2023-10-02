@@ -65,7 +65,6 @@ onMounted(async () => {
   <header-principal />
   <carousel-one/>
   <div id="Max">
-    <h1 id="Text-h1">Tendêcias</h1>
     <card-movel />
     <card-box />
   </div>
@@ -78,7 +77,5 @@ onMounted(async () => {
   clear: both;
   margin: 0 auto
 }
-#Text-h1{
-  text-align: center;
-}
+
 </style>

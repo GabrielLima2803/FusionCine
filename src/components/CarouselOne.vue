@@ -1,49 +1,47 @@
-<script>
-  export default {
-    data () {
-      return {
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
-      }
-    },
-  }
+<script setup>
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import {ref} from 'vue'
+
+const pictures = ref([
+  {
+    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
+    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
+  },
+  {
+    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
+    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
+  },
+  {
+    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
+    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
+  },
+  {
+    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
+    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
+  },
+  {
+    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
+    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
+  },
+])
 </script>
 
 <template>
-  <v-carousel
-    cycle
-    height="400"
-    hide-delimiter-background
-    show-arrows="hover"
-  >
-    <v-carousel-item
-      v-for="(slide, i) in slides"
-      :key="i"
-    >
-      <v-sheet
-        :color="colors[i]"
-        height="100%"
-      >
-        <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2">
-            {{ slide }} Slide
-          </div>
-        </div>
-      </v-sheet>
-    </v-carousel-item>
-  </v-carousel>
+  <carousel :items-to-show="1">
+    <slide v-for="slide in pictures" :key="slide">
+      <img :src="slide.src" :alt="slide.alt" class="img"/>
+    </slide>
+
+    <template #addons>
+      <navigation />
+      <pagination />
+    </template>
+  </carousel>
 </template>
 
-<style scoped></style>
+<style scoped>
+.img{
+}
+</style>

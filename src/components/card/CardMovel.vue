@@ -23,9 +23,10 @@ const getMoviePosterUrl = (posterPath) => {
 </script>
 
 <template>
-    <carousel :items-to-show="5">
+      <h1 id="Text-h1">Tendêcias</h1>
+    <carousel :items-to-show="7.5" class="Margin">
         <slide v-for="movie in movies" :key="movie.id">
-            <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150"/>
+            <img :src="getMoviePosterUrl(movie.poster_path)" alt="" width="150" class="img"/>
         </slide>
         <template #addons>
             <navigation />
@@ -35,5 +36,17 @@ const getMoviePosterUrl = (posterPath) => {
   
 
   
-<style scoped></style>
+<style scoped>
+.Margin{
+  margin-bottom: 80px;
+}
+#Text-h1{
+  text-align: center;
+   margin-top: 80px;
+   margin-bottom: 20px;
+}
+.img{
+  border-radius: 10px 10px;
+}
+</style>
   

@@ -26,7 +26,7 @@ const listMovies = async (genreId) => {
     params: {
       with_genres: genreId,
       language: 'pt-BR'
-    }
+    } 
   });
   movies.value = response.data.results
   isLoading.value = false;
