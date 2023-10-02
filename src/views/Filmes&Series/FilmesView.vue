@@ -5,8 +5,6 @@ import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import Loading from 'vue-loading-overlay'
 const isLoading = ref(false);
-// import PreLoader from '../../components/loading/PreLoader.vue';
-// import {isLoading} from '../../components/loading/PreLoader.vue';
 const genres = ref([])
 
 function getGenreName(id) {
@@ -47,7 +45,6 @@ const listMovies = async (genreId) => {
   </div>
   <div class="movie-list">
     <div v-for="movie in movies" :key="movie.id" class="movie-card">
-
       <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
       <div class="movie-details">
         <p class="movie-title">{{ movie.title }}</p>

@@ -3,14 +3,15 @@
 
 <template>
   <div class="preloader">
-    <div class="loading">
+    <img src="@/assets/img/GifPreloader.gif" alt="" class="gif-loader">
+    <!-- <div class="loading">
       <div class="lds-ring">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
   
@@ -18,7 +19,7 @@
 .preloader {
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #191F26;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,4 +77,5 @@
     transform: rotate(360deg);
   }
 }
+
 </style>

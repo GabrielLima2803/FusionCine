@@ -1,7 +1,9 @@
 <template>
+    <div id="containerLateral">
+        a
+    </div>
     <div id="template">
         <div>
-            
         </div>
         <div class="container">
             <form class="form-section">
@@ -25,11 +27,11 @@
                         <input type="checkbox" id="remember" />
                         <p>Remember me</p>
                     </label>
-                    <a href="#">Esqueceu a senha?</a>
+                    <a href="#" class="text-hover">Esqueceu a senha?</a>
                 </div>
                 <button class="btn-login">login</button>
                 <div class="register">
-                    <p>Don't an account?<a href="#">Register</a></p>
+                    <p >Não tem conta?<a href="#" class="text-hover">Register</a></p>
                 </div>
             </form>
         </div>
@@ -50,7 +52,11 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
+#containerLateral{
+    background-color: white;
+    height: 100%;
+    height: 40%;
+}
 :root {
     --white: #ffffff;
     --light-gray: #ffffff80;
@@ -62,9 +68,15 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    widows: 60%;
     user-select: none;
     font-family: Poppins;
+    background-color: #191F26;
     background-size: cover;
+}
+.text-hover:hover{
+    color: #3b5575;;
+    transition: .6s;
 }
 
 .container {
@@ -73,7 +85,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     padding: 1.5em;
     border-radius: 0.6em;
     backdrop-filter: blur(01.5em);
-    background-color: red;
+    background-color: rgb(255, 255, 255);
     text-align: center;
     border: 0.1em solid #ffffff80;
 }
@@ -86,7 +98,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 .form-section h1 {
     font-size: 2rem;
     font-weight: bold;
-    color: white;
+    color: rgb(0, 0, 0);
     margin: 0 0 1em 0;
 }
 
@@ -100,7 +112,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     position: absolute;
     top: 50%;
     left: 0;
-    color: white;
+    color: rgb(0, 0, 0);
     transform: translateY(-50%);
     pointer-events: none;
     transition: 0.2s ease;
@@ -110,7 +122,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     width: 100%;
     height: 2.4em;
     font-size: 1.2rem;
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: Poppins;
 }
 
@@ -126,7 +138,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     height: 1.7em;
     width: 1.7em;
     background-color: transparent;
-    color: white;
+    color: rgb(0, 0, 0);
     right: 0;
     top: 0.7em;
     border-radius: 1em;
@@ -156,7 +168,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     justify-content: space-between;
     flex-direction: row;
     margin: 0 0 1em 0;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .form-section .remember-forgot label {
@@ -166,7 +178,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 }
 
 .remember-forgot label #remember {
-    accent-color: white;
+    accent-color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
@@ -177,20 +189,20 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     font-size: 1rem;
     font-weight: bold;
     margin: 1.5em 0;
-    background-color: white;
+    color: white;
+    background-color:   #191F26;
     transition: 0.3s ease;
     border: 0.2em solid transparent;
     text-transform: uppercase;
 }
 
 .container .btn-login:hover {
-    color: white;
+    color: rgb(255, 255, 255);
     border-color: white;
-    background-color: #ffffff80;
 }
 
 .register p {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .register p a:hover {
@@ -204,7 +216,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 
 .remember-forgot a,
 .register p a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
