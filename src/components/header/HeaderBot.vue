@@ -26,8 +26,9 @@ onMounted(() => {
 
 <template>
     <div id="headerBot" :class="['header', 'sticky', { 'hidden': isHeaderHidden }]">
+    
         <div class="header__logo">
-            <img src="@/assets/img/header/Logo.png" alt="" width="100">
+           <router-link to="/"><img src="@/assets/img/header/Logo.png" alt="" width="100"></router-link> 
         </div>
         <div class="header__links">
             <router-link to="/filmes" class="text-white"><span
@@ -233,6 +234,7 @@ p {
     z-index: 1000;
 
 }
+
 
 .header__logo {
     grid-column: 1;

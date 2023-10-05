@@ -1,3 +1,6 @@
+<script>
+
+</script>
 <template>
         <div id="headerTop">
             <div class="house">
@@ -31,7 +34,6 @@
     padding: 3px;
     margin-left: 28px;
 }
-
 .borde {
     border-right: #252323 solid 1px;
     padding-right: 15px;

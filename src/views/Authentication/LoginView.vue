@@ -1,11 +1,10 @@
 <template>
-    <div id="containerLateral">
-        a
-    </div>
     <div id="template">
-        <div>
-        </div>
         <div class="container">
+            <div class="form-image">
+            <img src="@/assets/img/auth/register/undraw_shopping_re_3wst.svg" alt="">
+        </div>
+        <div class="container-login">
             <form class="form-section">
                 <h1>Login</h1>
                 <div class="input-box">
@@ -31,9 +30,10 @@
                 </div>
                 <button class="btn-login">login</button>
                 <div class="register">
-                    <p >Não tem conta?<a href="#" class="text-hover">Register</a></p>
+                    <p >Não tem conta?<router-link to="/register" class="text-hover">Register</router-link></p>
                 </div>
             </form>
+        </div>
         </div>
     </div>
 </template>
@@ -52,34 +52,35 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-#containerLateral{
-    background-color: white;
-    height: 100%;
-    height: 40%;
-}
-:root {
-    --white: #ffffff;
-    --light-gray: #ffffff80;
-    --gray: #cccccc;
-}
-
 #template {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    widows: 60%;
+    width: 100%;
+    height: 100vh;
     user-select: none;
-    font-family: Poppins;
     background-color: #191F26;
     background-size: cover;
 }
+.container{
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
+}
 .text-hover:hover{
-    color: #3b5575;;
+    color: #3b5575;
     transition: .6s;
 }
-
-.container {
+.form-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #3b5575;
+    padding: 1rem;
+}
+.container-login {
     width: 25em;
     height: 30em;
     padding: 1.5em;
@@ -90,7 +91,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     border: 0.1em solid #ffffff80;
 }
 
-.container .form-section {
+.container-login .form-section {
     display: flex;
     flex-direction: column;
 }
@@ -182,7 +183,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     cursor: pointer;
 }
 
-.container .btn-login {
+.container-login .btn-login {
     padding: 0.75em 1.25em;
     cursor: pointer;
     border-radius: 0.3em;
@@ -196,7 +197,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     text-transform: uppercase;
 }
 
-.container .btn-login:hover {
+.container-login .btn-login:hover {
     color: rgb(255, 255, 255);
     border-color: white;
 }
