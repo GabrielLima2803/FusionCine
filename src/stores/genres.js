@@ -1,24 +1,19 @@
-import { defineStore } from "pinia";
-import api from '@/plugins/axios.js'
+import { reactive, computed } from 'vue'
+import { defineStore } from 'pinia'
+import api from '@/plugins/axios'
 
-export const useGenreStore = defineStore('genre', {
-    state: () => ({
-      genres: [],
-    }),
-    actions: {
-      async fetchGenres() {
-        try {
-          const response = await api.get('genre/movie/list?language=pt-BR');
-          this.genres = response.data.genres;
-        } catch (error) {
-          console.error('Erro ao buscar gêneros:', error);
-        }
-      },
-    },
-    getters: {
-      getGenreNameById: (state) => (id) => {
-        const genre = state.genres.find((genre) => genre.id === id);
-        return genre ? genre.name : '';
-      },
-    },
-  });
+export const useGenreStore = defineStore('genre', () => {
+  const state = reactive({
+    genres: []
+  })
+
+  const genres = computed(() => state.genres)
+  const getGenreName = (id) => state.genres.find((genre) => genre.id === id).name
+
+  const getAllGenres = async (type) => {
+    const response = await api.get(`genre/${type}/list?language=pt-BR`)
+    state.genres = response.data.genres
+  }
+
+  return { genres, getAllGenres, getGenreName }
+})

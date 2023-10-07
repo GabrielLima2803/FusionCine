@@ -1,58 +1,53 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import api from '@/plugins/axios.js'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
+import { ref, onMounted } from 'vue'
 import Loading from 'vue-loading-overlay'
-const isLoading = ref(false);
-const genres = ref([])
+import { useGenreStore } from '@/stores/genres'
+import { useMovieStore } from '@/stores/movie';
 
-function getGenreName(id) {
-  const genero = genres.value.find((genre) => genre.id === id);
-  return genero.name;
-}
-const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
+const genreStore = useGenreStore() 
+const movieStore = useMovieStore()
+const isLoading = ref(false);
 
 onMounted(async () => {
-  const response = await api.get('genre/movie/list?language=pt-BR')
-  genres.value = response.data.genres
+  isLoading.value = true
+  await genreStore.getAllGenres('movie') 
+  isLoading.value = false
 })
 
-const movies = ref([]);
-
 const listMovies = async (genreId) => {
-  isLoading.value = true;
-  const response = await api.get('discover/movie', {
-    params: {
-      with_genres: genreId,
-      language: 'pt-BR'
-    } 
-  });
-  movies.value = response.data.results
-  isLoading.value = false;
-};
+  isLoading.value = true
+  await movieStore.getAllMovie(genreId)
+  isLoading.value = false
+}
+const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 </script>
+
 <template>
-  <header-principal />
-  <div>
-    <h1>Filmes</h1>
-    <ul class="genre-list">
-      <li v-for="genre in genres" :key="genre.id" @click="listMovies(genre.id)" class="genre-item">
-        {{ genre.name }}
-      </li>
-    </ul>
-    <loading v-model:active="isLoading" is-full-page />
-  </div>
-  <div class="movie-list">
-    <div v-for="movie in movies" :key="movie.id" class="movie-card">
-      <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
-      <div class="movie-details">
-        <p class="movie-title">{{ movie.title }}</p>
-        <p class="movie-release-date">{{ formatDate(movie.release_date) }}</p>
-        <p class="movie-genres"> 
-          <span v-for="genre_id in movie.genre_ids" :key="genre_id" >
-            {{ getGenreName(genre_id) }}
-          </span></p>
+    <div>
+    <header-principal />
+    <div class="container">
+      <h1>Filmes</h1>
+      <ul class="genre-list">
+        <li v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)" class="genre-item">
+          {{ genre.name }}
+        </li>
+      </ul>
+      <loading v-model:active="isLoading" is-full-page />
+    </div>
+    <div class="movie-list">
+      <div v-for="movie in movieStore.movies" :key="movie.id" class="movie-card">
+        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
+        <div class="movie-details">
+          <p class="movie-title">{{ movie.title }}</p>
+          <p class="movie-release-date">{{ formatDate(movie.release_date) }}</p>
+          <p class="movie-genres">
+            <span v-for="genre_id in movie.genre_ids" :key="genre_id">
+              {{ genreStore.getGenreName(genre_id) }}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -60,14 +55,33 @@ const listMovies = async (genreId) => {
 </template>
 
 <style scoped>
-.movie-genres {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.2rem;
+.genre-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 80px;
 }
 
+.genre-item {
+    background-color: #000000;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    align-self: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.genre-item:hover {
+    cursor: pointer;
+    background-color: #e6e6e6;
+    color: #000000;
+    transition: .4s;
+    box-shadow: 0 0 0.5rem #ffffff;
+}
 .movie-genres span {
   background-color: #000000;
   border-radius: 0.5rem;
@@ -82,27 +96,5 @@ const listMovies = async (genreId) => {
   background-color: #8f8f8f;
   box-shadow: 0 0 0.5rem #3a3a3a;
 }
-.genre-list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-}
 
-.genre-item {
-  background-color: #000000;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  color: #fff;
-}
-
-.genre-item:hover {
-  cursor: pointer;
-  background-color: #696969;
-  box-shadow: 0 0 0.5rem #696969;
-  color: rgb(255, 255, 255);
-  transition: .4s;
-}
 </style>
