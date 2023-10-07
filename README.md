@@ -41,6 +41,9 @@
   <tr>
     <td>MySQL Workbench</td>
     <td>Pode-se executar consultas SQL, administrar o sistema e modelar, criar e manter a base de dados através de um ambiente integrado.</td>
+  </tr>  <tr>
+    <td>Pinia</td>
+    <td>Ferramenta leve de gerenciamento de estado para Vue. js. Ele nos permite compartilhar um estado entre elementos e páginas.</td>
   </tr>
 </table>
 
