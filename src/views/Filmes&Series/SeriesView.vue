@@ -65,7 +65,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
     gap: 2rem;
     list-style: none;
     padding: 0;
-    margin-top: 80px;
+    margin-top: 81px;
 }
 
 .genre-item {
