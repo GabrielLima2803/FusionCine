@@ -8,8 +8,29 @@ import { createPinia } from 'pinia' // Importe createPinia
 import App from './App.vue'
 import router from './router'
 
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import { aliases, fa } from 'vuetify/iconsets/fa'
+import { mdi } from 'vuetify/iconsets/mdi'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+const vuetify = createVuetify({
+    components,
+    directives,
+    icons: {
+      defaultSet: 'mdi',
+      aliases,
+      sets: {
+        mdi, fa
+      },
+    },
+  })
+
 const app = createApp(App)
 app.use(router)
+app.use(vuetify)
+
 
 // Crie a instância do Pinia e use-a na aplicação
 const pinia = createPinia()
