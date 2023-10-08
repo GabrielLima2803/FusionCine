@@ -1,9 +1,5 @@
 <template>
     <div id="template">
-        <div class="container">
-            <div class="form-image">
-            <img src="@/assets/img/auth/register/undraw_shopping_re_3wst.svg" alt="">
-        </div>
         <div class="container-login">
             <form class="form-section">
                 <h1>Login</h1>
@@ -35,7 +31,6 @@
             </form>
         </div>
         </div>
-    </div>
 </template>
   
 <script setup>
@@ -64,7 +59,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
 }
 .container{
     width: 80%;
-    height: 80vh;
+    height: 40em;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
 }
@@ -73,7 +68,7 @@ const inputType = computed(() => (showPassword.value ? "text" : "password"));
     transition: .6s;
 }
 .form-image {
-    width: 50%;
+    width: 57%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -4,14 +4,12 @@ import FullFooter from '@/components/footer/FullFooter.vue'
 import CardBox from '@/components/card/CardBox.vue'
 import CardMovel from '@/components/card/CardMovel.vue'
 import CarouselOne from '@/components/CarouselOne.vue'
-import DropDown from '../components/card/DropDown.vue'
 
 </script>
 <template>
   <header-principal />
   <carousel-one/>
-  <drop-down />
-  <div id="Max">
+   <div id="Max">
     <card-movel />
     <card-box />
   </div>
