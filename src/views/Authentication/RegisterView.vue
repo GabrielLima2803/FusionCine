@@ -10,27 +10,18 @@
                         <h1>Cadastre-se</h1>
                     </div>
                     <div class="login-button">
-                        <button><a href="#">Entrar</a></button>
+                        <router-link to="/login"><button class="text-white">Login</button></router-link>
                     </div>
                 </div>
                 <div class="input-group">
                     <div class="input-box">
-                        <label for="firstname">Primeiro Nome</label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu primeiro nome" required>
+                        <label for="firstname">Nome de Usuário</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu usuário" required>
                     </div>
 
-                    <div class="input-box">
-                        <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
-                    </div>
                     <div class="input-box">
                         <label for="email">E-mail</label>
                         <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="number">Cep</label>
-                        <input id="number" type="cep" name="number" placeholder="xxx.xxx.xxx-xx" required>
                     </div>
 
                     <div class="input-box">
@@ -68,6 +59,7 @@
     height: 80vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
+    margin-top: 100px;
 }
 
 .form-image {
@@ -75,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:  #3b5575;
+    background-color:  #414e5c;;
     padding: 1rem;
 }
 
@@ -106,7 +98,7 @@
 
 .login-button button {
     border: none;
-    background-color: #3b5575;
+    background-color: #191F26;;
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
@@ -127,7 +119,7 @@
     display: block;
     width: 5rem;
     height: 0.3rem;
-    background-color: #3b5575;
+    background-color: #191F26;;
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
@@ -160,7 +152,7 @@
 }
 
 .input-box input:focus-visible {
-    outline: 1px solid #3b5575;
+    outline: 1px solid #191F26;;
 }
 
 .input-box label,
@@ -200,7 +192,7 @@
     width: 100%;
     margin-top: 2.5rem;
     border: none;
-    background-color: #3b5575;
+    background-color: #191F26;;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;

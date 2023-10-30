@@ -4,6 +4,9 @@ import FilmesView from '@/views/Filmes&Series/FilmesView.vue'
 import SeriesView from '@/views/Filmes&Series/SeriesView.vue'
 import LoginView from '@/views/Authentication/LoginView.vue'
 import RegisterView from '@/views/Authentication/RegisterView.vue'
+import PessoasView from '@/views/Outros/PessoasView.vue'
+import FavoritoView from '@/views/Favoritos/FavoritoView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +35,16 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
+    },
+    {
+      path: '/pessoas',
+      name: 'pessoas',
+      component: PessoasView
+    },
+    {
+      path: '/favorito',
+      name: 'favorito',
+      component: FavoritoView
     }
   ]
 })

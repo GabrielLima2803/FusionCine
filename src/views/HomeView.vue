@@ -3,6 +3,7 @@ import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue'
 import FullFooter from '@/components/footer/FullFooter.vue'
 import CardBox from '@/components/card/CardBox.vue'
 import CardMovel from '@/components/card/CardMovel.vue'
+import CardNet from '@/components/card/CardNet.vue'
 import CarouselOne from '@/components/CarouselOne.vue'
 
 </script>
@@ -12,6 +13,7 @@ import CarouselOne from '@/components/CarouselOne.vue'
    <div id="Max">
     <card-movel />
     <card-box />
+    <card-net/>
   </div>
   <full-footer />
 </template>

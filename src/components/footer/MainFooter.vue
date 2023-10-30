@@ -41,14 +41,18 @@
           Nossas Redes
         </h4>
         <p>
-            <span><i class="bi bi-instagram"></i></span>
-            <span><i class="bi bi-facebook mr"></i></span>
+            <span><i class="bi bi-instagram icon"></i></span>
+            <span><i class="bi bi-facebook mr icon"></i></span>
         </p>
       </div>
     </div>
   </template>
   
   <style scoped>
+
+  .icon{
+    cursor: pointer;
+  }
   .footer-flex {
     display: flex;
     flex-direction: row;
