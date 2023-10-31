@@ -33,11 +33,34 @@ const hideInfo = () => {
               <div class="counter">
                 <p>{{ `${index + 1}` }}</p>
               </div>
-              <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="150"
+              <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="165"
                 class="z-3 img" @mouseover="showInfo(index)" @mouseout="hideInfo(index)" />
-              <div v-if="infoVisible === index" class="info">
-                <p>Título: {{ series.title }}</p>
-                <p>Descrição: {{ series.overview }}</p>
+              <div v-if="infoVisible === index" class="info info-transition active">
+
+                <div class="container-trailer">
+                  <p>sdas</p>
+                </div>
+                <div class="container-bot">
+                  <div class="container-icon display">
+                    <i class="bi bi-play-fill text-aling"></i>
+                    <i class="bi bi-plus-circle text-aling"></i>
+                    <i class="bi bi-heart-fill text-aling"></i>
+                  </div>
+                  <div class="container-info">
+                    <p class="text-green mt-3 text-aling">96% relevante</p>
+                    <div class="display mt-3">
+                      <p class="idade">14</p>
+                      <p class="ml-2 temp">5 temporadas</p>
+                      <i class="bi bi-badge-hd-fill ml-2 icon-hd"></i>
+                    </div>
+                  </div>
+                  <div class="container-tv display mt-5">
+                    <p>{{ series.name }}</p>
+                    <p class="ml-2"> • Tipo:</p>
+                    <p class="ml-2"> • Genêro:</p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -48,56 +71,35 @@ const hideInfo = () => {
       </carousel>
     </div>
   </div>
-  <div class="info2">
-    <div class="container-trailer">
-      <p>sdas</p>
-    </div>
-    <div class="container-bot">
-      <div class="container-icon">
-        <i class="bi bi-play-fill"></i>
-        <i class="bi bi-plus-circle"></i> 
-        <i class="bi bi-heart-fill"></i>
-      </div>
-      <div class="container-info">
-        <p class="text-green mt-3">96% relevante</p>
-        <div class="display mt-3">
-          <p class="idade">14</p>
-          <p class="ml-2 temp">5 temporadas</p>
-          <i class="bi bi-badge-hd-fill ml-2 icon-hd"></i>
-        </div>
-      </div>
-      <div class="container-tv display mt-4">
-        <p>Título</p>
-        <p class="ml-2">Tipo:</p>
-        <p class="ml-2">Genêro:</p>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped>
-
-.container-bot{
+.container-bot {
   padding: 15px;
+}
+.text-aling{
+  text-align: start;
 }
 .textPrincipal {
   font-size: 36px;
   font-weight: bold;
 }
-.idade{
+
+.idade {
   background-color: orangered;
   border-radius: 4px;
   padding: 3px;
 }
 
-.display{
+.display {
   display: flex;
 }
-.icon-hd
-{
+
+.icon-hd {
   margin-top: 2px;
 }
-.temp{
+
+.temp {
   font-size: 16px;
   margin-top: 2px;
 }
@@ -106,10 +108,11 @@ const hideInfo = () => {
   font-size: 32px;
   color: white;
 }
-.bi-heart-fill{
-color: white;
-margin-left: 5px;
-font-size: 27px;
+
+.bi-heart-fill {
+  color: white;
+  margin-left: 5px;
+  font-size: 27px;
 
 }
 
@@ -136,10 +139,12 @@ font-size: 27px;
 .counter {
   position: relative;
   color: rgb(0, 0, 0);
-  right: -55px;
+  right: -20px;
   padding: 5px;
+  top: 11px;
   font-weight: bold;
   font-size: 323.5px;
+  letter-spacing: -40px;
 }
 
 .img {
@@ -147,15 +152,19 @@ font-size: 27px;
 }
 
 .info {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: black;
   color: white;
-  padding: 10px;
   border-radius: 4px;
-  position: absolute;
-  top: 0;
-  left: 100%;
+  position: fixed;
   transform: translateX(10px);
   display: none;
+  left: 115px;
+  width: 350px;
+  height: 330px;
+  z-index: 99;
+  border-radius: 4px;
+  transition: opacity 0.3s ease-in-out; /* Adicione esta linha */
+
 }
 
 .info2 {
@@ -173,4 +182,9 @@ font-size: 27px;
 
 .img-container:hover .info {
   display: block;
-}</style>
+  opacity: 1;
+}
+
+
+
+</style>
