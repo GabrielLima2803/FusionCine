@@ -1,39 +1,37 @@
 <script setup>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import { useTvStore } from '@/stores/tv.js';
 import { onMounted, ref } from 'vue';
-const tvStore = useTvStore()
+import { useMovieStore } from '@/stores/movie';
 
-const infoVisible = ref(-1) // Inicialmente, nenhum índice de filme está visível
+const movieStore = useMovieStore()
 
+const infoVisible = ref(-1) 
 onMounted(async () => {
-  await tvStore.getAllTv()
+  await movieStore.getAllMovie()
 })
 
 const showInfo = (index) => {
-  // Mostra as informações adicionais quando o mouse passa por cima
   infoVisible.value = index
 }
 
 const hideInfo = () => {
-  // Esconde as informações adicionais quando o mouse sai de cima
   infoVisible.value = -1
 }
 </script>
 
 <template>
   <div class="container-top">
-    <h1 class="textPrincipal">Brasil: Top 10 em séries hoje</h1>
+    <h1 class="textPrincipal">Brasil: Top 10 em filmes hoje</h1>
     <div class="container-card">
       <carousel :items-to-show="2.8" class="Margin">
-        <slide v-for="(series, index) in tvStore.tvs" :key="series.id">
+        <slide v-for="(movie, index) in movieStore.movies" :key="movie.id">
           <div class="img-card">
             <div class="img-container">
               <div class="counter">
                 <p>{{ `${index + 1}` }}</p>
               </div>
-              <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="165"
+              <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"  :alt="movie.title" width="165"
                 class="z-3 img" @mouseover="showInfo(index)" @mouseout="hideInfo(index)" />
               <div v-if="infoVisible === index" class="info info-transition active">
 
@@ -55,7 +53,7 @@ const hideInfo = () => {
                     </div>
                   </div>
                   <div class="container-tv display mt-5">
-                    <p>{{ series.name }}</p>
+                    <p>{{ movie.title }}</p>
                     <p class="ml-2"> • Tipo:</p>
                     <p class="ml-2"> • Genêro:</p>
                   </div>
@@ -184,6 +182,7 @@ const hideInfo = () => {
   display: block;
   opacity: 1;
 }
+
 
 
 </style>

@@ -4,6 +4,7 @@ import FullFooter from '@/components/footer/FullFooter.vue'
 import CardBox from '@/components/card/CardBox.vue'
 import CardMovel from '@/components/card/CardMovel.vue'
 import CardNet from '@/components/card/CardNet.vue'
+import CardNetMovie from '@/components/card/CardNetMovie.vue'
 import CarouselOne from '@/components/CarouselOne.vue'
 
 </script>
@@ -14,6 +15,7 @@ import CarouselOne from '@/components/CarouselOne.vue'
     <card-movel />
     <card-box />
     <card-net/>
+    <card-net-movie/>
   </div>
   <full-footer />
 </template>

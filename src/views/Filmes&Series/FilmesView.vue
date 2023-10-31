@@ -6,8 +6,8 @@ import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genres'
 import { useMovieStore } from '@/stores/movie';
 
-const genreStore = useGenreStore() 
 const movieStore = useMovieStore()
+const genreStore = useGenreStore() 
 const isLoading = ref(false);
 
 onMounted(async () => {

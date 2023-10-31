@@ -1,7 +1,7 @@
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PreLoader from '@/components/loading/PreLoader.vue'; // 
-import { ref } from 'vue';
 const router = useRouter();
 const showPreloader = ref(false);
 
