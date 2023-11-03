@@ -37,22 +37,23 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 <template>
     <header-principal />
     <div v-for="movie in movies" :key="movie.id">
+        <div class="backdrop">
         <div class="container-main">
             <div class="container-movie z-3">
-                <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="270"
+                <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="300"
                     class="img-movie" />
                 <div class="info-movie">
                     <h1 class="title">{{ movie.title }}</h1>
-                    <p class="movie-date">{{ formatDate(movie.release_date) }}</p>
-    
+                    <p class="movie-date mt-3 mb-3">{{ formatDate(movie.release_date) }}</p>
                     <p>Avaliações de Usúario</p>
-                    <h2 class="sinopse">Sinopse</h2>
+                    <h2 class="sinopse mt-7 ">Sinopse</h2>
                     <p>{{ movie.overview }}</p>
                     <div class="btn-alugar">
                         <button class="btn"> Alugar </button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <full-footer />
@@ -76,7 +77,8 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 
 .img-movie {
     border-radius: 10px;
-    margin-top: 4em;
+    margin-top: 3.5em;
+    margin-bottom: 3.5em;
 }
 
 .info-movie {
@@ -90,14 +92,10 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
     font-weight: bold;
 }
 
-.backdrop {
-    filter: blur(1.5px);
+.backdrop
+{
+    background-color: #191F26;
+    color: white;
 }
 
-.cont-backdrop {
-    position: fixed;
-    width: 100%;
-    height: 600px;
-    margin: 0;
-}
 </style>
