@@ -38,7 +38,9 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
     </div>
     <div class="movie-list">
       <div v-for="movie in movieStore.movies" :key="movie.id" class="movie-card">
+        <router-link :to="`/movie/${movie.id}`">
         <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
+        </router-link>
         <div class="movie-details">
           <p class="movie-title">{{ movie.title }}</p>
           <p class="movie-release-date">{{ formatDate(movie.release_date) }}</p>

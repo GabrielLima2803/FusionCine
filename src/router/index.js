@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import FilmesView from '@/views/Filmes&Series/FilmesView.vue'
+import SoloMovieView from '@/views/Filmes&Series/SoloMovieView.vue'
 import SeriesView from '@/views/Filmes&Series/SeriesView.vue'
 import LoginView from '@/views/Authentication/LoginView.vue'
 import RegisterView from '@/views/Authentication/RegisterView.vue'
@@ -45,6 +46,12 @@ const router = createRouter({
       path: '/favorito',
       name: 'favorito',
       component: FavoritoView
+    },
+    {
+      path: '/movie/:id',
+      name: 'movie',
+      component: SoloMovieView,
+      props: true
     }
   ]
 })

@@ -8,7 +8,7 @@ export const useMovieStore = defineStore('movie',
         movies: []
     })
     const movies = computed(() => state.movies)
-
+    
     const getAllMovie = async (genreId) => {
         const response = await api.get(`discover/movie`,{
             params: {
@@ -17,6 +17,7 @@ export const useMovieStore = defineStore('movie',
             }
           });
           state.movies = response.data.results;
-    }
+        }
+        
     return {movies, getAllMovie}
 })

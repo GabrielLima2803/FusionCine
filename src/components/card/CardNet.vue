@@ -2,7 +2,7 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useTvStore } from '@/stores/tv.js';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 const tvStore = useTvStore()
 
 const infoVisible = ref(-1) // Inicialmente, nenhum índice de filme está visível
@@ -20,6 +20,8 @@ const hideInfo = () => {
   // Esconde as informações adicionais quando o mouse sai de cima
   infoVisible.value = -1
 }
+const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
+
 </script>
 
 <template>
@@ -27,7 +29,7 @@ const hideInfo = () => {
     <h1 class="textPrincipal">Brasil: Top 10 em séries hoje</h1>
     <div class="container-card">
       <carousel :items-to-show="2.8" class="Margin">
-        <slide v-for="(series, index) in tvStore.tvs" :key="series.id">
+        <slide v-for="(series, index) in first9Tv" :key="series.id">
           <div class="img-card">
             <div class="img-container">
               <div class="counter">

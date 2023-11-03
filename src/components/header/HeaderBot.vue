@@ -232,7 +232,7 @@ p {
   grid-gap: 10px;
   transition: top 0.3s; /* Adicione uma transição suave para animação */
   position: fixed;
-  top: 0;
+  top: 21px;
   left: 0;
   right: 0;
   z-index: 1000;

@@ -1,7 +1,7 @@
 <script setup>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useMovieStore } from '@/stores/movie';
 
 const movieStore = useMovieStore()
@@ -18,6 +18,8 @@ const showInfo = (index) => {
 const hideInfo = () => {
   infoVisible.value = -1
 }
+const first9Movies = computed(() => movieStore.movies.slice(0, 9))
+
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const hideInfo = () => {
     <h1 class="textPrincipal">Brasil: Top 10 em filmes hoje</h1>
     <div class="container-card">
       <carousel :items-to-show="2.8" class="Margin">
-        <slide v-for="(movie, index) in movieStore.movies" :key="movie.id">
+        <slide v-for="(movie, index) in first9Movies" :key="movie.id">
           <div class="img-card">
             <div class="img-container">
               <div class="counter">
