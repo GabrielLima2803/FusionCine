@@ -125,6 +125,8 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
 
 .container-top {
   margin-top: 5rem;
+  border-radius: 10px;
+
 }
 
 .container-card {

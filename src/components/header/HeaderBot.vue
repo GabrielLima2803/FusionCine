@@ -26,7 +26,7 @@ onMounted(() => {
     <div class="header__logo">
       <router-link to="/"
         ><img src="@/assets/img/header/Logo.png" alt="" width="100"
-      /></router-link>
+      class="margin-img" /></router-link>
     </div>
     <div class="header__links">
       <router-link to="/filmes" class="text-white"
@@ -68,7 +68,9 @@ onMounted(() => {
   top: -80px;
   /* Esconda o cabeçalho movendo-o para cima */
 }
-
+.margin-img{
+  margin-top: 15px;
+}
 .hover:hover {
   font-size: 22px;
   transition: 0.6s;
