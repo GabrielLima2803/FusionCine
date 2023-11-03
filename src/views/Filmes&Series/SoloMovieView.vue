@@ -3,13 +3,11 @@ import { onMounted, ref } from 'vue';
 import api from '@/plugins/axios'
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
-import { useGenreStore } from '@/stores/genres'
 const movies = ref([]);
 const props = defineProps({
     id: Number
 });
 
-const genreStore = useGenreStore()
 
 onMounted(async () => {
     const movieDetails = await fetchMovieDetails(props.id);
@@ -46,9 +44,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
                 <div class="info-movie">
                     <h1 class="title">{{ movie.title }}</h1>
                     <p class="movie-date">{{ formatDate(movie.release_date) }}</p>
-                    <span v-for="genre_id in movie.genre_ids" :key="genre_id">
-                        {{ genreStore.getGenreName(genre_id) }}
-                    </span>
+    
                     <p>Avaliações de Usúario</p>
                     <h2 class="sinopse">Sinopse</h2>
                     <p>{{ movie.overview }}</p>

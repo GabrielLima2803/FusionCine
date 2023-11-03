@@ -1,26 +1,26 @@
 <script setup>
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
-import Loading from 'vue-loading-overlay'
 import { ref, onMounted } from 'vue'
 import { useGenreStore } from '@/stores/genres'
 import { useTvStore } from '@/stores/tv.js';
+import PreLoader from '@/components/loading/PreLoader.vue';
+const showPreloader = ref(true); 
 
 
 const genreStore = useGenreStore() 
 const tvStore = useTvStore()
 
-const isLoading = ref(false);
 
 onMounted(async () => {
-  isLoading.value = true
+  showPreloader.value = true
   await genreStore.getAllGenres('tv') 
-  isLoading.value = false
+  showPreloader.value = false
 })
 const listTv = async (genreId) => {
-  isLoading.value = true
+  showPreloader.value = true
   await tvStore.getAllTv(genreId)
-  isLoading.value = false
+  showPreloader.value = false
 }
 
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
@@ -37,7 +37,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
                     {{ genre.name }}
                 </li>
             </ul>
-            <loading v-model:active="isLoading" is-full-page />
+            <PreLoader v-if="showPreloader" />
         </div>
         <div class="series-list">
             <div v-for="series in tvStore.tvs" :key="series.id" class="series-card">

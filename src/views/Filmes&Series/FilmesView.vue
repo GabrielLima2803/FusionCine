@@ -2,24 +2,25 @@
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import { ref, onMounted } from 'vue'
-import Loading from 'vue-loading-overlay'
 import { useMovieStore } from '@/stores/movie';
 import { useGenreStore } from '@/stores/genres'
+import PreLoader from '@/components/loading/PreLoader.vue';
+const showPreloader = ref(true); 
+
 
 const genreStore = useGenreStore() 
 const movieStore = useMovieStore()
-const isLoading = ref(false);
 
 onMounted(async () => {
-  isLoading.value = true
+  showPreloader.value = true
   await genreStore.getAllGenres('movie') 
-  isLoading.value = false
+  showPreloader.value = false
 })
 
 const listMovies = async (genreId) => {
-  isLoading.value = true
+  showPreloader.value = true
   await movieStore.getAllMovie(genreId)
-  isLoading.value = false
+  showPreloader.value = false
 }
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 </script>
@@ -33,7 +34,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
           {{ genre.name }}
         </li>
       </ul>
-      <loading v-model:active="isLoading" is-full-page />
+      <PreLoader v-if="showPreloader" />
     </div>
     <div class="movie-list">
       <div v-for="movie in movieStore.movies" :key="movie.id" class="movie-card">

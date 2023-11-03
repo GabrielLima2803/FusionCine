@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
     "@popperjs/core": "^2.11.8",
     "@vueuse/core": "^10.4.1",
     "axios": "^1.5.0",
