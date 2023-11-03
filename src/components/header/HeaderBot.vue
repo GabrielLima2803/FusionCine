@@ -1,18 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import Search from './Search.vue';
 const isHeaderHidden = ref(false)
 let prevScrollY = window.scrollY
 
 function handleScroll() {
   const scrollY = window.scrollY
 
-  // Verifique a direção do scroll
   if (scrollY > prevScrollY) {
-    // Scroll para baixo
     isHeaderHidden.value = true
   } else {
-    // Scroll para cima
     isHeaderHidden.value = false
   }
 
@@ -47,12 +44,8 @@ onMounted(() => {
     </div>
     <div class="header__rest">
       <div class="FSL">
-        <div class="search">
-          <i class="bi bi-search colorSearch marginS"></i>
-          <!-- <input type="text"> -->
-          <p class="marginS pbuscar">Buscar</p>
-        </div>
         <div class="WrapFL">
+          <search/>
             <router-link to="/favorito">
                 <i class="bi bi-heart favorito hover text-white"></i>
             </router-link>
@@ -196,11 +189,10 @@ i {
 }
 
 .search {
-  background-color: #252323;
   padding: 10px;
-  border-radius: 30px;
   display: flex;
-  width: 160px;
+  margin-left: 80px;
+  width: 10px;
 }
 
 p {
@@ -209,7 +201,7 @@ p {
 }
 
 .colorSearch {
-  color: gray;
+  color: rgb(255, 255, 255);
   margin-right: 10px;
 }
 
