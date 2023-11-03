@@ -3,11 +3,11 @@ import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import { ref, onMounted } from 'vue'
 import Loading from 'vue-loading-overlay'
-import { useGenreStore } from '@/stores/genres'
 import { useMovieStore } from '@/stores/movie';
+import { useGenreStore } from '@/stores/genres'
 
-const movieStore = useMovieStore()
 const genreStore = useGenreStore() 
+const movieStore = useMovieStore()
 const isLoading = ref(false);
 
 onMounted(async () => {
@@ -28,7 +28,6 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
     <div>
     <header-principal />
     <div class="container">
-      <h1>Filmes</h1>
       <ul class="genre-list">
         <li v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)" class="genre-item">
           {{ genre.name }}

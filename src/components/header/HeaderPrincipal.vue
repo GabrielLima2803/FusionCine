@@ -4,8 +4,16 @@ import HeaderBot from './HeaderBot.vue';
 </script>
 
 <template>
-    <header>
-        <header-top/>
-      <header-bot/>
-    </header>
+  <header>
+    <div class="m">
+      <header-top />
+      <header-bot />
+    </div>
+  </header>
 </template>
+
+<style>
+.m {
+  margin-bottom: 100px;
+}
+</style>
