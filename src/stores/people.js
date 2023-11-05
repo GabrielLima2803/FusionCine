@@ -2,7 +2,7 @@ import {reactive, computed} from 'vue'
 import { defineStore } from 'pinia'
 import api from '@/plugins/axios'
 
-export const usepeoplestore = defineStore('people',
+export const usePeopleStore = defineStore('people',
 () => {
     const state = reactive({
         peoples: []
@@ -10,7 +10,7 @@ export const usepeoplestore = defineStore('people',
     const peoples = computed(() => state.peoples)
 
     const getAllPeople = async() => {
-        const response = await api.get(`trending/person`,{
+        const response = await api.get(`/person/popular?language=pt-BR&page=1`,{
           });
           state.peoples = response.data.results;
     }
