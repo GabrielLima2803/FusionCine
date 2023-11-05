@@ -2,12 +2,18 @@
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import { usePeopleStore } from '@/stores/people.js'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import PreLoader from '@/components/loading/PreLoader.vue';
+const showPreloader = ref(true); 
 const peopleStore = usePeopleStore();
 
 onMounted(async () => {
     await peopleStore.getAllPeople()
-    
+    showPreloader.value = true
+    await peopleStore.nextPage()
+    showPreloader.value = false
+    await peopleStore.backPage()
+
 })
 
 </script>
@@ -16,7 +22,7 @@ onMounted(async () => {
     <header-principal />
     <div class="container-max">
         <div class="title">
-            <h1 class="font">Pessoas Populares</h1>
+            <h1 class="font">Pessoas Populares ({{ peopleStore.currentPage }})</h1>
         </div>
         <div class="container-people">
             <div v-for="people in peopleStore.peoples" :key="people.id" class="card">
@@ -30,9 +36,16 @@ onMounted(async () => {
                 </div>
             </div>
         </div>
+
+        <div class="NextBack">
+            <button @click="peopleStore.backPage" :disabled="peopleStore.currentPage <= 1" class="mr-3"> ← Anterior</button>
+            <button @click="peopleStore.nextPage">Próxima →</button>
+        </div>
     </div>
+        <PreLoader v-if="showPreloader" />
     <full-footer />
 </template>
+  
   
 <style scoped>
 .container-max {
@@ -82,11 +95,18 @@ onMounted(async () => {
     text-align: start;
     font-weight: bold;
 }
-.img{
+
+.img {
     max-height: 300px;
 }
+
 .info {
     padding: 8px;
 }
-</style>
+
+.NextBack {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: -50px;
+}</style>
   
