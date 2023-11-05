@@ -46,7 +46,6 @@ onMounted(() => {
                 </div>
             </div>
             <div class="modal-footer">
-                <h3>Footer</h3>
             </div>
         </div>
     </div>
