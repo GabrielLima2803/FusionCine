@@ -6,13 +6,13 @@ export const usePeopleStore = defineStore('people',
 () => {
     const state = reactive({
         peoples: [],
-        currentPage: 1,
+        currentPage: 0,
     })
 
     const peoples = computed(() => state.peoples)
     const currentPage = computed(() => state.currentPage)
 
-    const getAllPeople = async (page = 1) => {
+    const getAllPeople = async (page = 2) => {
         const response = await api.get(`/person/popular?language=pt-BR&page=${page}`, {
         });
         state.peoples = response.data.results;

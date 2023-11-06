@@ -9,7 +9,9 @@
         <div class="linksTop">
             <span class="borde">Ajuda</span>
             <span class="borde">Junte-se a nós</span>
-            <span class="borde-Ultimo">Entrar</span>
+            <router-link to="/login" class="text-black text">
+                <span class="borde-Ultimo">Entrar</span>
+            </router-link>
         </div>
     </div>
 </template>
@@ -52,5 +54,8 @@
 
 .color-house {
     color: gray;
+}
+.tet{
+    text-decoration: none;
 }
 </style>
