@@ -6,6 +6,7 @@ import SeriesView from '@/views/Filmes&Series/SeriesView.vue'
 import LoginView from '@/views/Authentication/LoginView.vue'
 import RegisterView from '@/views/Authentication/RegisterView.vue'
 import PessoasView from '@/views/Outros/PessoasView.vue'
+import SoloPeopleView from '@/views/Outros/SoloPeopleView.vue'
 import FavoritoView from '@/views/Favoritos/FavoritoView.vue'
 
 
@@ -51,6 +52,12 @@ const router = createRouter({
       path: '/movie/:id',
       name: 'movie',
       component: SoloMovieView,
+      props: true
+    },
+    {
+      path: '/people/:id',
+      name: 'people',
+      component: SoloPeopleView,
       props: true
     }
   ]
