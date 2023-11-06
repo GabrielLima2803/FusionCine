@@ -2,16 +2,12 @@
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import { usePeopleStore } from '@/stores/people.js'
-import { onMounted, ref } from 'vue';
-import PreLoader from '@/components/loading/PreLoader.vue';
-const showPreloader = ref(true); 
+import { onMounted } from 'vue';
 const peopleStore = usePeopleStore();
 
 onMounted(async () => {
     await peopleStore.getAllPeople()
-    showPreloader.value = true
     await peopleStore.nextPage()
-    showPreloader.value = false
     await peopleStore.backPage()
 
 })
@@ -27,8 +23,10 @@ onMounted(async () => {
         <div class="container-people">
             <div v-for="people in peopleStore.peoples" :key="people.id" class="card">
                 <div class="img">
-                    <img :src="`https://image.tmdb.org/t/p/w500${people.profile_path}`" :alt="`Imagem de ${people.name}`"
+                    <router-link :to="`/people/${people.id}`">
+                        <img :src="`https://image.tmdb.org/t/p/w500${people.profile_path}`" :alt="`Imagem de ${people.name}`"
                         class="img-profile" />
+                    </router-link>
                 </div>
                 <div class="info">
                     <p class="name">{{ people.name }}</p>
@@ -42,7 +40,6 @@ onMounted(async () => {
             <button @click="peopleStore.nextPage">Próxima →</button>
         </div>
     </div>
-        <PreLoader v-if="showPreloader" />
     <full-footer />
 </template>
   
@@ -71,7 +68,6 @@ onMounted(async () => {
     width: 300px;
     height: 350px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
     display: flex;
     flex-direction: column;
 }
@@ -97,6 +93,7 @@ onMounted(async () => {
 }
 
 .img {
+    cursor: pointer;    
     max-height: 300px;
 }
 
@@ -108,5 +105,6 @@ onMounted(async () => {
     text-align: center;
     margin-top: 50px;
     margin-bottom: -50px;
-}</style>
+}
+</style>
   
