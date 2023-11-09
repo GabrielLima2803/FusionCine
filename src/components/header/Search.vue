@@ -54,8 +54,9 @@ onMounted(async () => {
       </div>
       <div class="modal-footer">
         <div v-for="item in useSearch.search" :key="item.id">
-          <p class="text-black">
+          <p class="text-black display">
             {{ item.title }}
+            <img :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`" :alt="item.title" width="150" />
           </p>
         </div>
       </div>
