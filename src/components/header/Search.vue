@@ -30,7 +30,7 @@ onMounted(() => {
 })
 
 onMounted(async () => {
-//   await useSearch.SearchMulti()
+  //   await useSearch.SearchMulti()
 })
 </script>
 <template>
@@ -48,10 +48,17 @@ onMounted(async () => {
             <button type="submit" class="searchButton" @click="useSearch.SearchMulti(searchTerm)">
               <i class="fa fa-search"></i>
             </button>
+
           </div>
         </div>
       </div>
-      <div class="modal-footer"></div>
+      <div class="modal-footer">
+        <div v-for="item in useSearch.search" :key="item.id">
+          <p class="text-black">
+            {{ item.title }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
