@@ -26,20 +26,15 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 </script>
 
 <template>
-    <div>
+  <div>
     <header-principal />
     <div class="container">
-      <ul class="genre-list">
-        <li v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)" class="genre-item">
-          {{ genre.name }}
-        </li>
-      </ul>
       <PreLoader v-if="showPreloader" />
     </div>
     <div class="movie-list">
       <div v-for="movie in movieStore.movies" :key="movie.id" class="movie-card">
         <router-link :to="`/movie/${movie.id}`">
-        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
+          <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
         </router-link>
         <div class="movie-details">
           <p class="movie-title">{{ movie.title }}</p>
@@ -51,6 +46,32 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
           </p>
         </div>
       </div>
+        <v-card>
+          <v-layout>
+            <v-navigation-drawer
+              expand-on-hover
+              rail
+              class="navigation-drawer"
+            >
+              <v-list>
+                <v-list-item
+                prepend-icon="bi bi-person-circle"
+                  title="Sandra Adams"
+                  subtitle="sandra_a88@gmailcom"
+                ></v-list-item>
+              </v-list>
+        
+              <v-divider></v-divider>
+        
+              <v-list density="compact" nav>
+                <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)">
+          {{ genre.name }}</v-list-item>
+              </v-list>
+            </v-navigation-drawer>
+        
+            <v-main style="height: 250px"></v-main>
+          </v-layout>
+        </v-card>
     </div>
   </div>
   <full-footer />
@@ -98,5 +119,8 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
   background-color: #8f8f8f;
   box-shadow: 0 0 0.5rem #3a3a3a;
 }
+.navigation-drawer{
+  margin-top: 80px;
 
+}
 </style>
