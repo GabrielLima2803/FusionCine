@@ -1,11 +1,14 @@
 <script setup>
+import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
+import FullFooter from '@/components/footer/FullFooter.vue';
+import CardSearch from '@/components/card/CardSearch.vue';
 
 </script>
 
 <template>
-    <div class="container-max">
-
-    </div>
+    <header-principal/>
+    <card-search/>
+    <full-footer/>
 </template>
 
 <style scoped>

@@ -8,6 +8,7 @@ import RegisterView from '@/views/Authentication/RegisterView.vue'
 import PessoasView from '@/views/Outros/PessoasView.vue'
 import SoloPeopleView from '@/views/Outros/SoloPeopleView.vue'
 import FavoritoView from '@/views/Favoritos/FavoritoView.vue'
+import SearchView from '@/views/Outros/SearchView.vue'
 
 
 const router = createRouter({
@@ -59,6 +60,11 @@ const router = createRouter({
       name: 'people',
       component: SoloPeopleView,
       props: true
+    },
+    {
+      path: '/search',
+      name: 'resultados',
+      component: SearchView
     }
   ]
 })

@@ -1,13 +1,21 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useSearchStore } from '@/stores/search'
+
+const router = useRouter()
 
 const modal = ref(null)
 const btn = ref(null)
 const span = ref(null)
 const searchTerm = ref('')
 const useSearch = new useSearchStore()
+
+function search() {
+  useSearch.SearchMulti(searchTerm.value)
+  router.push({name: 'resultados'})
+}
 
 onMounted(() => {
   modal.value = document.getElementById('myModal')
@@ -30,7 +38,6 @@ onMounted(() => {
 })
 
 onMounted(async () => {
-  //   await useSearch.SearchMulti()
 })
 </script>
 <template>
@@ -45,7 +52,7 @@ onMounted(async () => {
         <div class="wrap">
           <div class="search">
             <input v-model="searchTerm" type="text" class="searchTerm" placeholder="..." />
-            <button type="submit" class="searchButton" @click="useSearch.SearchMulti(searchTerm)">
+            <button type="submit" class="searchButton" @click="search">
               <i class="fa fa-search"></i>
             </button>
 
@@ -53,12 +60,6 @@ onMounted(async () => {
         </div>
       </div>
       <div class="modal-footer">
-        <div v-for="item in useSearch.search" :key="item.id">
-          <p class="text-black display">
-            {{ item.title }}
-            <img :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`" :alt="item.title" width="150" />
-          </p>
-        </div>
       </div>
     </div>
   </div>
