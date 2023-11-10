@@ -49,6 +49,13 @@ onMounted(async () => {
                             <h2 class="biografia" >Biografia</h2>
                             <p class="mt-3">Descrição</p>
                         </div>
+                        <div>
+                            <h3 class="conhecido-por" > Conhecido(a) por</h3>
+                            <div>
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg" alt="" class="img-filmes">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg" alt="" class="img-filmes">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -85,4 +92,15 @@ display: flex;
     font-weight: bold;
     font-size: 20px;
 }
+.conhecido-por{
+   font-weight: bold;
+   font-size: 22px;
+   margin-top: 30px;    
+}
+.img-filmes{
+    width: 140px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 10px;
+}   
 </style>
