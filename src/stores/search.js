@@ -6,16 +6,25 @@ export const useSearchStore = defineStore('search',
 () => {
     const state = reactive({
         search: [],
-        query: ''
+        query: '',
+        currentPage: 0,
     })
     const search = computed(() => state.search)
     
-    const SearchMulti = async (param) => {
-        console.log('tetstete')
-        console.log(param)
-        const response = await api.get(`/search/multi?query=${param}&include_adult=false&language=pt-BR&page=1`);
+    const SearchMulti = async (param, page = 1) => {
+        const response = await api.get(`/search/multi?query=${param}&include_adult=false&language=pt-BR&page=${page}`);
+        console.log(response.data)
         state.search = response.data.results;
     }
-        
-    return {search, SearchMulti}
+    const nextPage = () => {
+        const nextPage = state.currentPage + 1;
+        SearchMulti(nextPage); 
+    }
+
+    const backPage = () => {
+        const backPage = state.currentPage - 1;
+        SearchMulti(backPage); 
+
+    }
+    return {search, SearchMulti, nextPage, backPage}
 })
