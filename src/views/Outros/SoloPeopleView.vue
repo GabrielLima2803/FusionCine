@@ -19,7 +19,7 @@ const fetchPeopleDetail = async (id) => {
         return response.data;
     } catch (error) {
         console.error('Erro ao buscar os detalhes da pessoa:', error);
-        return null; 
+        return null;
     }
 };
 
@@ -33,74 +33,109 @@ onMounted(async () => {
 
 <template>
     <div>
-        <HeaderPrincipal/>
+        <HeaderPrincipal />
         <div class="container-max">
             <div v-for="person in peoples" :key="person.id">
                 <div class="display">
-                    <div class="container-img">
-                        <img :src="`https://image.tmdb.org/t/p/w500${person.profile_path}`" :alt="`Imagem de ${person.name}`"
-                            class="img-profile" width="300" height="450" />
+                    <div class="box-img">
+                        <div class="container-img">
+                            <img :src="`https://image.tmdb.org/t/p/w500${person.profile_path}`"
+                                :alt="`Imagem de ${person.name}`" class="img-profile" width="300" height="450" />
+                        </div>
+                        <div class= "box-IP">
+                            <i class="bi bi-instagram"></i>
+                            <h4 class="informações-pessoais">Informações Pessoais</h4>
+                            <div class="infos">
+                                <h5></h5>
+                            </div>
+                        </div>
                     </div>
                     <div class="info-person">
                         <h1 class="name">
                             {{ person.name }}
                         </h1>
                         <div class="descrition">
-                            <h2 class="biografia" >Biografia</h2>
+                            <h2 class="biografia">Biografia</h2>
                             <p class="mt-3">Descrição</p>
                         </div>
                         <div>
-                            <h3 class="conhecido-por" > Conhecido(a) por</h3>
+                            <h3 class="conhecido-por"> Conhecido(a) por</h3>
                             <div>
-                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg" alt="" class="img-filmes">
-                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg" alt="" class="img-filmes">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg"
+                                    alt="" class="img-filmes">
+                                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg"
+                                    alt="" class="img-filmes">
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
-        <FullFooter/>
+        <FullFooter />
     </div>
 </template> 
 
 <style scoped>
-.container-max{
+.container-max {
     max-width: 1420px;
     margin: 0 auto;
-    margin-top: 125px; 
+    margin-top: 125px;
 }
-.name{
+
+.name {
     font-size: 30px;
     font-weight: bold;
 }
-.img-profile{
+
+.img-profile {
     border-radius: 10px;
 }
-.display{
-display: flex;
+
+.display {
+    display: flex;
 
 }
-.info-person{
-    margin-left: 30px;
+
+.bi {
+    cursor: pointer;
+    font-size: 20px
 }
-.descrition{
+.box-IP{
+    margin-top: 10px;
+
+}
+.informações-pessoais{
+    font-weight: bold;
+    font-size: 22px;
     margin-top: 30px;
 }
-.biografia{
+.infos{
+    
+}
+
+.info-person {
+    margin-left: 30px;
+}
+
+.descrition {
+    margin-top: 30px;
+}
+
+.biografia {
     font-weight: bold;
     font-size: 20px;
 }
-.conhecido-por{
-   font-weight: bold;
-   font-size: 22px;
-   margin-top: 30px;    
+
+.conhecido-por {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 30px;
 }
-.img-filmes{
+
+.img-filmes {
     width: 140px;
     border-radius: 10px;
     margin-top: 15px;
     margin-left: 10px;
-}   
-</style>
+}</style>
