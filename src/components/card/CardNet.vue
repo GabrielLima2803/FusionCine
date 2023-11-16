@@ -5,19 +5,17 @@ import { useTvStore } from '@/stores/tv.js';
 import { onMounted, ref, computed } from 'vue';
 const tvStore = useTvStore()
 
-const infoVisible = ref(-1) // Inicialmente, nenhum índice de filme está visível
+const infoVisible = ref(-1) 
 
 onMounted(async () => {
   await tvStore.getAllTv()
 })
 
 const showInfo = (index) => {
-  // Mostra as informações adicionais quando o mouse passa por cima
   infoVisible.value = index
 }
 
 const hideInfo = () => {
-  // Esconde as informações adicionais quando o mouse sai de cima
   infoVisible.value = -1
 }
 const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
@@ -40,7 +38,6 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
               <div v-if="infoVisible === index" class="info info-transition active">
 
                 <div class="container-trailer">
-                  <p>sdas</p>
                 </div>
                 <div class="container-bot">
                   <div class="container-icon display">

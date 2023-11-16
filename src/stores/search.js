@@ -14,6 +14,7 @@ export const useSearchStore = defineStore('search',
     const SearchMulti = async (param, page = 1) => {
         const response = await api.get(`/search/multi?query=${param}&include_adult=false&language=pt-BR&page=${page}`);
         console.log(response.data)
+        state.currentPage = page;
         state.search = response.data.results;
     }
     const nextPage = () => {

@@ -19,6 +19,7 @@ const searchStore = useSearchStore()
         </table>
       </div> -->
       <div v-for="item in searchStore.search" :key="item.id" class="card-one">
+          <router-link :to="`/movie/${item.id}`" class="text-black text-deco">
         <div class="display">
           <img
             :src="
@@ -37,6 +38,7 @@ const searchStore = useSearchStore()
             <p class="sinopse">{{ item.overview }}</p>
           </div>
         </div>
+          </router-link>
       </div>
     </div>
     <div class="NextBack">
@@ -66,7 +68,9 @@ const searchStore = useSearchStore()
   display: flex;
   align-items: center;
 }
-
+.text-deco{
+  text-decoration: none;
+}
 .text {
   margin-left: 1rem;
 }
