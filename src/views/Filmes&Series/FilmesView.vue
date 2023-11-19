@@ -6,7 +6,7 @@ import { useMovieStore } from '@/stores/movie';
 import { useGenreStore } from '@/stores/genres'
 import PreLoader from '@/components/loading/PreLoader.vue';
 const showPreloader = ref(true);
-
+const selectedGenre = ref(null);
 
 const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -53,16 +53,13 @@ const formatYear = (date) => new Date(date).getFullYear();
                 <v-list-item prepend-icon="bi bi-person-circle" title="Sandra Adams"
                   subtitle="sandra_a88@gmailcom"></v-list-item>
               </v-list>
-
               <v-divider></v-divider>
-
               <v-list density="compact" nav>
                 <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id"
                   @click="listMovies(genre.id)">
                   {{ genre.name }}</v-list-item>
               </v-list>
             </v-navigation-drawer>
-
             <v-main style="height: 250px"></v-main>
           </v-layout>
         </v-card>
@@ -113,16 +110,20 @@ const formatYear = (date) => new Date(date).getFullYear();
 }
 
 .movie-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   justify-content: center;
-  margin: 80px;
 }
 
 .img-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  /* Adjust as needed */
+margin-left: 150px;
+margin-top: 120px;
+}
+
+
+.movie-card {
+  max-width: 200px; 
+  text-align: center;
 }
 
 .movie-card img {
