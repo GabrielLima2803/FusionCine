@@ -5,7 +5,7 @@ import { useTvStore } from '@/stores/tv.js';
 import { onMounted, ref, computed } from 'vue';
 const tvStore = useTvStore()
 
-const infoVisible = ref(-1) 
+const infoVisible = ref(-1)
 
 onMounted(async () => {
   await tvStore.getAllTv()
@@ -73,12 +73,19 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
 </template>
 
 <style scoped>
+.img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
 .container-bot {
   padding: 15px;
 }
-.text-aling{
+
+.text-aling {
   text-align: start;
 }
+
 .textPrincipal {
   font-size: 36px;
   font-weight: bold;
@@ -164,7 +171,8 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
   height: 330px;
   z-index: 99;
   border-radius: 4px;
-  transition: opacity 0.3s ease-in-out; /* Adicione esta linha */
+  transition: opacity 0.3s ease-in-out;
+  /* Adicione esta linha */
 
 }
 
@@ -184,7 +192,7 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
 .img-container:hover .info {
   display: block;
   opacity: 1;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
 }
-
-
 </style>
