@@ -6,6 +6,8 @@ import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import CardPop from '@/components/card/CardPop.vue';
+const showMoreCast = ref(false);
+const maxVisibleCastMembers = 8;
 const movies = ref([]);
 const props = defineProps({
     id: Number
@@ -42,8 +44,17 @@ const getFormattedRuntime = (runtime) => {
 const getGenreNames = (genres) => {
     return genres.map(genre => genre.name).join(', ');
 };
-const showMoreCast = ref(false);
-const maxVisibleCastMembers = 8;
+const openTrailer = (videos) => {
+    if (videos && videos.length > 0) {
+        const trailerId = videos[0].key; 
+        const trailerUrl = `https://www.youtube.com/watch?v=${trailerId}`;
+        window.open(trailerUrl, '_blank');
+    } else {
+        console.warn('Nenhum vídeo de trailer disponível.');
+    }
+    console.log('Abrir trailer:', videos);
+};
+
 
 const toggleShowMore = () => {
     showMoreCast.value = !showMoreCast.value;
@@ -70,8 +81,9 @@ const getKeywordsNames = (keywords) => {
                             <p class="mt-3 ml-3"> • {{ getGenreNames(movie.genres) }}</p>
                         </div>
                         <div class="trailer">
-                            <button @click="openTrailer(movie.videos && movie.videos.results)"> <i
-                                    class="bi bi-play-fill text-aling"></i> Reproduzir trailer</button>
+                            <button @click="openTrailer(movie.videos && movie.videos.results)">
+        <i class="bi bi-play-fill text-aling"></i> Reproduzir trailer
+    </button>
                         </div>
                         <p class="mt-4">Avaliações de Usúario</p>
                         <div class="rating-circle">
