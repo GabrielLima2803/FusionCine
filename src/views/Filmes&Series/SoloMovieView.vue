@@ -6,12 +6,12 @@ import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
 import CardPop from '@/components/card/CardPop.vue';
-const showMoreCast = ref(false);
-const maxVisibleCastMembers = 8;
 const movies = ref([]);
 const props = defineProps({
     id: Number
 });
+const showMoreCast = ref(false);
+const maxVisibleCastMembers = 8;
 
 
 onMounted(async () => {
@@ -46,7 +46,7 @@ const getGenreNames = (genres) => {
 };
 const openTrailer = (videos) => {
     if (videos && videos.length > 0) {
-        const trailerId = videos[0].key; 
+        const trailerId = videos[0].key;
         const trailerUrl = `https://www.youtube.com/watch?v=${trailerId}`;
         window.open(trailerUrl, '_blank');
     } else {
@@ -69,45 +69,41 @@ const getKeywordsNames = (keywords) => {
     <header-principal />
     <div v-for="movie in movies" :key="movie.id">
         <div class="backdrop">
-            <div class="container-main">
-                <div class="container-movie z-3">
-                    <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="350"
-                        class="img-movie" />
-                    <div class="info-movie">
-                        <h1 class="title">{{ movie.title }}</h1>
-                        <div class="container-so">
-                            <p class="movie-date mt-3 mb-3">{{ formatDate(movie.release_date) }} </p>
-                            <p class="mt-3 ml-3"> • {{ getFormattedRuntime(movie.runtime) }} </p>
-                            <p class="mt-3 ml-3"> • {{ getGenreNames(movie.genres) }}</p>
-                        </div>
-                        <div class="trailer">
-                            <button @click="openTrailer(movie.videos && movie.videos.results)">
-        <i class="bi bi-play-fill text-aling"></i> Reproduzir trailer
-    </button>
-                        </div>
-                        <p class="mt-4">Avaliações de Usúario</p>
-                        <div class="rating-circle">
-                            <div class="circle">
-                                <div class="mask full">
-                                    <div class="fill"></div>
-                                </div>
-                                <div class="mask half">
-                                    <div class="fill"></div>
-                                </div>
-                                <div class="inside-circle">
-                                    {{ movie.vote_average }}
-                                </div>
+            <div class="backdrop"
+                :style="{ 'background-image': `linear-gradient(to right, rgb(16, 14, 14) 150px, rgba(16, 14, 14, 0.84) 100%),url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }">
+                <div class="container-main">
+                    <div class="container-movie z-3">
+                        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="350"
+                            class="img-movie" />
+                        <div class="info-movie">
+                            <h1 class="title">{{ movie.title }}</h1>
+                            <div class="container-so">
+                                <p class="movie-date mt-3 mb-3">{{ formatDate(movie.release_date) }} </p>
+                                <p class="mt-3 ml-3"> • {{ getFormattedRuntime(movie.runtime) }} </p>
+                                <p class="mt-3 ml-3"> • {{ getGenreNames(movie.genres) }}</p>
                             </div>
-                        </div>
-                        <h2 class="sinopse mt-7 ">Sinopse</h2>
-                        <p class="mt-3">{{ movie.overview }}</p>
-                        <div class="btn-alugar">
-                            <button class="btn"> Alugar </button>
+                            <div class="trailer mt-5">
+                                <button @click="openTrailer(movie.videos && movie.videos.results)">
+                                    <i class="bi bi-play-fill text-aling"></i> Reproduzir trailer
+                                </button>
+                            </div>
+                            <div class="avi mt-6 d-flex">
+                                <i class="bi bi-star-fill"></i>
+                                <p class="ml-4"> {{ movie.vote_average }}
+                                </p>
+                            </div>
+                            <h2 class="sinopse mt-7 ">Sinopse</h2>
+                            <p class="mt-3">{{ movie.overview }}</p>
+                            <div class="btn-alugar mt-6 info-opc">
+                                <i class="bi bi-heart-fill"></i>
+                                <button class="ml-3"> Alugar </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Aprendendo a usar o bootstrap :) -->
         <div class="container-main d-flex flex-wrap">
             <div class="col-lg-8 col-md-8 col-12">
@@ -165,7 +161,8 @@ const getKeywordsNames = (keywords) => {
                     </div>
                     <div class="info-item">
                         <h1>Palavras-chave</h1>
-                        <div v-for="(keyword, index) in getKeywordsNames(movie.keywords)" :key="index" class="d-flex mt-2 flex-wrap justify-content-center justify-content-md-start">
+                        <div v-for="(keyword, index) in getKeywordsNames(movie.keywords)" :key="index"
+                            class="d-flex mt-2 flex-wrap justify-content-center justify-content-md-start">
                             <p class="keyword-tag">
                                 {{ keyword }}
                             </p>
@@ -173,7 +170,7 @@ const getKeywordsNames = (keywords) => {
                     </div>
                 </div>
             </div>
-            <card-pop/>
+            <card-pop />
         </div>
     </div>
     <full-footer />
@@ -183,10 +180,12 @@ const getKeywordsNames = (keywords) => {
 .container-main {
     max-width: 1400px;
     clear: both;
-    margin: 0 auto
+    margin: 0 auto;
 }
-
-.keyword-tag{
+.info-opc{
+font-size: 20px;
+}
+.keyword-tag {
     background-color: #ddd;
     color: #666;
     padding: 4px 8px;
@@ -248,6 +247,8 @@ const getKeywordsNames = (keywords) => {
 
 .container-movie {
     display: flex;
+    color: white;
+
 }
 
 .title {
@@ -271,15 +272,19 @@ const getKeywordsNames = (keywords) => {
     margin-top: 4.5em;
 
 }
-
+.avi{
+    font-size: 20px;
+}
 .sinopse {
     font-size: 25px;
     font-weight: bold;
 }
 
 .backdrop {
-    background-color: #191F26;
-    color: white;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 440px;
 }
 
 .circle {
