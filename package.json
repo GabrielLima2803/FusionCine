@@ -15,6 +15,7 @@
     "@vueuse/core": "^10.4.1",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.2",
+    "date-fns": "^2.30.0",
     "gitart-scroll-carousel": "^1.3.1",
     "gitart-vue-dialog": "^3.1.0",
     "hover.css": "^2.3.2",
@@ -38,6 +39,6 @@
     "prettier": "^3.0.3",
     "sass": "^1.68.0",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9"
+    "vite": "^4.5.0"
   }
 }
