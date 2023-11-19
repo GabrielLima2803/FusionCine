@@ -55,7 +55,7 @@
 .color-house {
     color: gray;
 }
-.tet{
+.text{
     text-decoration: none;
 }
 </style>

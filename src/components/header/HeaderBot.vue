@@ -39,7 +39,9 @@ onMounted(() => {
         <span class="links-2 hvr-underline-from-center">Pessoas</span>
       </router-link>
       <span class="links-2 hvr-underline-from-center">Discussões</span>
+      <router-link  to="/suporte" class="text-white">
       <span class="links-2 hvr-underline-from-center">Suporte</span>
+      </router-link>
       <span class="links-2 F hvr-underline-from-center">Mais</span>
     </div>
     <div class="header__rest">
