@@ -9,6 +9,7 @@ import PessoasView from '@/views/Outros/PessoasView.vue'
 import SoloPeopleView from '@/views/Outros/SoloPeopleView.vue'
 import FavoritoView from '@/views/Favoritos/FavoritoView.vue'
 import SearchView from '@/views/Outros/SearchView.vue'
+import SuporteView from '@/views/Outros/SuporteView.vue'
 
 
 const router = createRouter({
@@ -65,6 +66,11 @@ const router = createRouter({
       path: '/search',
       name: 'resultados',
       component: SearchView
+    },
+    {
+      path: '/suporte',
+      name: 'suporte',
+      component: SuporteView
     }
   ]
 })

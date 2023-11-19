@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template id="body">
 <div class="container">
         <div class="form-image">
