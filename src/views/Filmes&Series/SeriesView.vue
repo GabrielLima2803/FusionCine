@@ -42,9 +42,9 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
         <div class="series-list">
             <div v-for="series in tvStore.tvs" :key="series.id" class="series-card">
                 <router-link :to="`/tv/${series.id}`">
-                <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="150" />
+                <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.name" width="150" />
                 <div class="series-details">
-                    <p class="series-title">{{ series.title }}</p>
+                    <p class="series-title">{{ series.name }}</p>
                     <p class="series-release-date">{{ formatDate(series.release_date) }}</p>
                     <p class="series-genres">
                         <span v-for="genre_id in series.genre_ids" :key="genre_id">
