@@ -1,4 +1,4 @@
-<script setup>
+    <script setup>
 import { onMounted, ref } from 'vue';
 import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
@@ -45,9 +45,13 @@ onMounted(async () => {
                         <div class= "box-IP">
                             <i class="bi bi-instagram"></i>
                             <h4 class="informações-pessoais">Informações Pessoais</h4>
-                            <div class="infos">
-                                <h5></h5>
-                            </div>
+                            <p class="conhecido-por-down">conhecido(a) por</p>
+                            <p class="creditado-em"> creditado(a) em</p>
+                            <p class="genero"> Gênero </p>
+                            <p class="nascimento">Nascimento</p>
+                            <p class="local-de-nascimento">Local de nascimento (inglês)</p>
+                            <p class="tambem-conhecido">Também conhecido(a) como</p>
+
                         </div>
                     </div>
                     <div class="info-person">
@@ -59,7 +63,7 @@ onMounted(async () => {
                             <p class="mt-3">Descrição</p>
                         </div>
                         <div>
-                            <h3 class="conhecido-por"> Conhecido(a) por</h3>
+                            <h3 class="conhecido-up "> Conhecido(a) por</h3>
                             <div>
                                 <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/1yUbmAiw2cUSpyXNIaiST7JzCtG.jpg"
                                     alt="" class="img-filmes">
@@ -110,10 +114,31 @@ onMounted(async () => {
     font-size: 22px;
     margin-top: 30px;
 }
-.infos{
-    
+.conhecido-por-down{
+    font-weight: bold;
+    margin-top: 15px;
 }
+.creditado-em{
+    font-weight: bold;
+    margin-top: 30px;
+}
+.genero{
+    font-weight: bold;
+    margin-top: 30px;
+}
+.nascimento{
+    margin-top: 30px;
+    font-weight: bold;
+}
+.local-de-nascimento{
+    margin-top: 30px;
+    font-weight: bold;
 
+}
+.tambem-conhecido{
+    margin-top: 30px;
+    font-weight: bold;  
+}
 .info-person {
     margin-left: 30px;
 }
@@ -127,7 +152,7 @@ onMounted(async () => {
     font-size: 20px;
 }
 
-.conhecido-por {
+.conhecido-up {
     font-weight: bold;
     font-size: 22px;
     margin-top: 30px;
