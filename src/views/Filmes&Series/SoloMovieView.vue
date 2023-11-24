@@ -5,7 +5,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
-import CardPop from '@/components/card/CardPop.vue';
+import CardPopTv from '@/components/card/CardPopTv.vue';
 const movies = ref([]);
 const props = defineProps({
     id: Number
@@ -170,7 +170,7 @@ const getKeywordsNames = (keywords) => {
                     </div>
                 </div>
             </div>
-            <card-pop />
+            <!-- <card-pop-tv/> -->
         </div>
     </div>
     <full-footer />

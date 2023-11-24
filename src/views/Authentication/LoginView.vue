@@ -6,8 +6,7 @@
                 <div class="input-box">
                     <input type="text" required />
                     <label>Insira seu email</label>
-                </div>
-                <div class="input-box">
+                </div>                <div class="input-box">
                     <input class="password" :type="inputType" required />
                     <label>Insira sua senha</label>
                     <div class="eye-wrapper" @click="showHide">
