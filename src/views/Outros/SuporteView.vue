@@ -9,13 +9,13 @@ import FullFooter from '@/components/footer/FullFooter.vue';
         <h1>Suporte do FusionCine</h1>
         <div class="d-flex justify-content-around marginTop">
             <div class="box">
-                <p>Conversas</p>
+                <i class="bi bi-chat-left-text"></i>
             </div>
             <div class="box">
-                <p>Conversas</p>
+                <i class="bi bi-chat-left-text"></i>
             </div>
             <div class="box">
-                <p>Conversas</p>
+                <i class="bi bi-chat-left-text"></i>
             </div>
         </div>
     </div>

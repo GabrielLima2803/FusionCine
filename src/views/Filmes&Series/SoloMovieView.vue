@@ -5,14 +5,12 @@ import ptBR from 'date-fns/locale/pt-BR';
 import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
-import CardPopTv from '@/components/card/CardPopTv.vue';
 const movies = ref([]);
 const props = defineProps({
     id: Number
 });
 const showMoreCast = ref(false);
 const maxVisibleCastMembers = 8;
-
 
 onMounted(async () => {
     const movieDetails = await fetchMovieDetails(props.id);
@@ -44,6 +42,7 @@ const getFormattedRuntime = (runtime) => {
 const getGenreNames = (genres) => {
     return genres.map(genre => genre.name).join(', ');
 };
+
 const openTrailer = (videos) => {
     if (videos && videos.length > 0) {
         const trailerId = videos[0].key;
@@ -55,125 +54,164 @@ const openTrailer = (videos) => {
     console.log('Abrir trailer:', videos);
 };
 
-
 const toggleShowMore = () => {
     showMoreCast.value = !showMoreCast.value;
 };
+
 const getKeywordsNames = (keywords) => {
     return keywords.keywords.map(keyword => keyword.name);
 };
-
 </script>
 
 <template>
-    <header-principal />
-    <div v-for="movie in movies" :key="movie.id">
-        <div class="backdrop">
-            <div class="backdrop"
-                :style="{ 'background-image': `linear-gradient(to right, rgb(16, 14, 14) 150px, rgba(16, 14, 14, 0.84) 100%),url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }">
-                <div class="container-main">
-                    <div class="container-movie z-3">
-                        <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="350"
-                            class="img-movie" />
-                        <div class="info-movie">
-                            <h1 class="title">{{ movie.title }}</h1>
-                            <div class="container-so">
-                                <p class="movie-date mt-3 mb-3">{{ formatDate(movie.release_date) }} </p>
-                                <p class="mt-3 ml-3"> • {{ getFormattedRuntime(movie.runtime) }} </p>
-                                <p class="mt-3 ml-3"> • {{ getGenreNames(movie.genres) }}</p>
-                            </div>
-                            <div class="trailer mt-5">
-                                <button @click="openTrailer(movie.videos && movie.videos.results)">
-                                    <i class="bi bi-play-fill text-aling"></i> Reproduzir trailer
-                                </button>
-                            </div>
-                            <div class="avi mt-6 d-flex">
-                                <i class="bi bi-star-fill"></i>
-                                <p class="ml-4"> {{ movie.vote_average }}
-                                </p>
-                            </div>
-                            <h2 class="sinopse mt-7 ">Sinopse</h2>
-                            <p class="mt-3">{{ movie.overview }}</p>
-                            <div class="btn-alugar mt-6 info-opc">
-                                <i class="bi bi-heart-fill"></i>
-                                <button class="ml-3"> Alugar </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <header-principal />
+  <div v-for="movie in movies" :key="movie.id">
+    <div class="backdrop">
+      <div
+        class="backdrop"
+        :style="{
+          'background-image': `linear-gradient(to right, rgb(16, 14, 14) 150px, rgba(16, 14, 14, 0.84) 100%),url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
+        }"
+      >
+        <div class="container-main">
+          <div class="container-movie z-3">
+            <img
+              :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+              :alt="movie.title"
+              width="350"
+              class="img-movie"
+            />
+            <div class="info-movie">
+              <h1 class="title">{{ movie.title }}</h1>
             </div>
+          </div>
+          <div class="trailer mt-5">
+                <button @click="openTrailer(movie.videos && movie.videos.results)">
+                  <i class="bi bi-play"></i> Reproduzir trailer
+                </button>
+              </div>
+              <div class="btn-alugar mt-6 info-opc">
+                  <i class="bi bi-heart"></i>
+                  <button class="ml-3"> Alugar </button>
+                </div>
+                <div class="avi mt-6 d-flex">
+                  <i class="bi bi-star-fill"></i>
+                  <p class="ml-4"> {{ movie.vote_average }}</p>
+                </div>
         </div>
-
-        <!-- Aprendendo a usar o bootstrap :) -->
-        <div class="container-main d-flex flex-wrap">
-            <div class="col-lg-8 col-md-8 col-12">
-                <div class="panel">
-                    <h1 class="mb-4 font-weight-bold text-center text-md-left mt-4 title-member">Elenco Principal</h1>
-                    <div class="d-flex flex-wrap">
-                        <div v-for="(castMember) in movie.credits.cast.slice(0, showMoreCast ? undefined : maxVisibleCastMembers)"
-                            :key="castMember.id" class="mb-3 col-lg-3 col-sm-4 col-6 wid-card">
-                            <div class="h-100 card">
-                                <img v-if="castMember.profile_path"  :src="`https://image.tmdb.org/t/p/w500${castMember.profile_path}`" />
-                                <img v-else src="@/assets/img/fallback.jpg" alt="Fallback Image" />                                <div class="card-body">
-                                    <h2 class="name-member">{{ castMember.name }}</h2>
-                                    <p class="mt-1 char">{{ castMember.character }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn-show-cast btn-lg" @click="toggleShowMore">
-                            {{ showMoreCast ? 'ver menos' : 'ver mais' }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-12">
-                <div class="info text-center  text-md-left">
-                    <div class="social d-flex mt-4 title-member">
-                        <i class="bi bi-instagram"></i>
-                        <i class="bi bi-twitter ml-5"></i>
-                        <i class="bi bi-facebook ml-5"></i>
-                    </div>
-                    <div class="info-item ">
-                        <h1>Título original</h1>
-                        <p class="mt-4">
-                            {{ movie.original_title }}
-                        </p>
-                    </div>
-                    <div class="info-item ">
-                        <h1>Situação</h1>
-                        <p class="mt-4">
-                            {{ movie.status }}
-                        </p>
-                    </div>
-                    <div class="info-item ">
-                        <h1>Orçamento</h1>
-                        <p class="mt-4">
-                            ${{ movie.budget }}
-                        </p>
-                    </div>
-                    <div class="info-item ">
-                        <h1>Receita</h1>
-                        <p class="mt-4">
-                            ${{ movie.revenue }}
-                        </p>
-                    </div>
-                    <div class="info-item">
-                        <h1>Palavras-chave</h1>
-                        <div v-for="(keyword, index) in getKeywordsNames(movie.keywords)" :key="index"
-                            class="d-flex mt-2 flex-wrap justify-content-center justify-content-md-start">
-                            <p class="keyword-tag">
-                                {{ keyword }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <card-pop-tv/> -->
-        </div>
+      </div>
     </div>
+    <hr />
+    <div class="container-main d-flex flex-wrap">
+      <!-- Elenco -->
+      <div>
+        <div class="panel">
+          <h2 class="mb-4 font-weight-bold text-center text-md-left mt-4 title-member">Elenco Principal</h2>
+          <div class="d-flex flex-wrap">
+            <div
+              v-for="(castMember) in movie.credits.cast.slice(0, showMoreCast ? undefined : maxVisibleCastMembers)"
+              :key="castMember.id"
+              class="m-3 wid-card"
+            >
+              <div>
+                <div class="circle">
+                  <img
+                    v-if="castMember.profile_path"
+                    :src="`https://image.tmdb.org/t/p/w500${castMember.profile_path}`"
+                    class="cast-member-image mask full mx-auto"
+                  />
+                  <img
+                    v-else
+                    src="@/assets/img/fallback.jpg"
+                    alt="Fallback Image"
+                    class="cast-member-image mask full"
+                  />
+                  <div class="inside-circle">
+                    <p class="name-member">{{ castMember.name }}</p>
+                    <p class="char">{{ castMember.character }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+  <button class="btn-show-cast btn-lg" @click="toggleShowMore">
+    <i v-if="showMoreCast" class="bi bi-arrow-bar-up"></i>
+    <i v-else class="bi bi-arrow-bar-down"></i>
+  </button>
+</div>
+        </div>
+      </div>
+      </div>
+      <!-- Informações -->
+     <div class="info-gener">
+      <div class="col-lg-4 col-md-4 col-12">
+        <div class="info text-center text-md-left m-20">
+            <h2 class="sinopse m-10 ">Sinopse</h2>
+            <div class="info-sobre">
+            <h5 class="title">{{ movie.title }}</h5>
+            <h6 class="mt-3 ml-3"> {{ getGenreNames(movie.genres) }}</h6>
+            <div class="sinop">
+                <p class="mt-3">{{ movie.overview }}</p>
+            </div>
+              </div>
+              </div>
+              <hr>
+          <div class="info-item p-20">
+            <h1>Título original</h1>
+            <h6 class="mt-4">{{ movie.original_title }}</h6>
+          </div>
+          </div>
+       <!-- Adicione estas classes à div .informacoes -->
+<div class="informacoes">
+  <div class="info-col">
+    <div class="info-item">
+      <h2>Sobre o filme</h2>
+    </div>
+    <div class="info-item">
+      <h6>Lançamento</h6>
+      <p class="movie-date mt-1">{{ formatDate(movie.release_date) }}</p>
+    </div>
+    <div class="info-item">
+      <h6>Duração</h6>
+      <p class="mt-1">{{ getFormattedRuntime(movie.runtime) }}</p>
+    </div>
+    <div class="info-item">
+      <h6>Genêro</h6>
+      <p class="mt-1">{{ getGenreNames(movie.genres) }}</p>
+    </div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-item">
+      <h2>Informações</h2>
+    </div>
+    <div class="info-item">
+      <h6>Situação</h6>
+      <p class="mt-1">{{ movie.status }}</p>
+    </div>
+    <div class="info-item">
+      <h6>Orçamento</h6>
+      <p class="mt-1">${{ movie.budget }}</p>
+    </div>
+    <div class="info-item">
+      <h6>Receita</h6>
+      <p class="mt-1">${{ movie.revenue }}</p>
+    </div>
+  </div>
+
+  <div class="info-col">
+    <div class="info-item">
+      <h2>Palavras-chave</h2>
+    </div>
+    <div v-for="(keyword, index) in getKeywordsNames(movie.keywords)" :key="index" class="">
+      <p class="keyword-tag">{{ keyword }}</p>
+    </div>
+  </div>
+</div>
+      </div>
     <full-footer />
+  </div>
 </template>
 
 <style scoped>
@@ -183,41 +221,72 @@ const getKeywordsNames = (keywords) => {
     margin: 0 auto;
 }
 .info-opc{
-font-size: 20px;
-}
-.keyword-tag {
-    background-color: #ddd;
-    color: #666;
-    padding: 4px 8px;
-    border-radius: 6px;
-    margin-right: 10px;
     font-size: 18px;
+    color: black;
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
 }
 
+.informacoes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between; 
+  margin: 20px;
+}
+
+.info-col {
+  width: 100%; /* Ocupa toda a largura da coluna */
+  align-items: center; /* Garante que as informações estejam centralizadas */
+}
+.keyword-tag {
+    padding: 4px 8px;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 6px;
+    font-size: 10px;
+    width: 25%;
+}
+
+.info-gener{
+    background-color: #bfbfbf3c;
+}
+
+.info-sobre{
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 14px 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #9b9a9a; 
+    margin: 20px;
+}
+.info-sobre>h5{
+    color: black; 
+    font-size: 20px;
+}
+.info-sobre>h6{
+    color: rgba(160, 160, 160, 0.879); 
+    font-size: 10px;
+}
 .info-item>h1 {
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
 }
 
-.info-item>p {
-    font-size: 21px;
-    margin-left: 5px;
+.info-item{
+    margin: 10px;
 }
-
-.card {
-    position: relative;
-    display: flex;
-    width: 160px;
-    flex-direction: column;
-    cursor: pointer;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, .125);
-    margin-left: 0.5rem;
-    border-radius: 0.5rem;
+.info-item>p {
+    font-size: 11px;
+    margin-left: 5px;
+    color: #666;
+}
+.info-item>h6 {
+    font-size: 13px;
+    margin-left: 5px;
+    color: black;
 }
 
 .card-body {
@@ -231,9 +300,6 @@ font-size: 20px;
     font-size: 12px;
 }
 
-.title-member {
-    font-size: 30px;
-}
 
 .name-member {
     font-size: 15px;
@@ -257,10 +323,19 @@ font-size: 20px;
 }
 
 .trailer {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
 }
 
+hr{
+  width: 95%;
+  margin: 20px;
+}
 .img-movie {
     border-radius: 10px;
     margin-top: 3.5em;
@@ -286,24 +361,6 @@ font-size: 20px;
     background-size: cover;
     min-height: 440px;
 }
-
-.circle {
-    width: 50px;
-    height: 50px;
-    background-color: #ccc;
-    border-radius: 50%;
-    position: relative;
-}
-
-.mask {
-    clip: rect(0, 50px, 100px, 0);
-    position: absolute;
-}
-
-.full {
-    transform: rotate(0deg);
-}
-
 .half {
     transform: rotate(180deg);
 }
@@ -313,13 +370,47 @@ font-size: 20px;
     clip: rect(0, 100px, 100px, 50px);
 }
 
-.inside-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
+.cast-member-image {
+    max-width: 100%;
 }
+
+.mask {
+    clip: rect(0, 100px, 100px, 0);
+    position: absolute;
+}
+
+.full {
+  transform: rotate(0deg);
+}
+.circle {
+  width: 100px; /* ou o tamanho desejado */
+  height: 100px; /* ou o tamanho desejado */
+  background-color: #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; 
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.circle:hover{
+  border: 2px solid rgba(0, 0, 0, 0.797);
+  transform: scale(1.05); /* Ajuste o valor conforme necessário para a escala desejada */
+  transition: transform 0.3s ease; /* Adicione uma transição suave */
+}
+.inside-circle {
+  position: absolute;
+  bottom: 0; /* Ajuste a posição conforme necessário */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
 </style>

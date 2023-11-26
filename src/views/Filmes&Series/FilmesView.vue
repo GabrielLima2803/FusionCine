@@ -1,12 +1,12 @@
 <script setup>
-import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
-import FullFooter from '@/components/footer/FullFooter.vue';
+import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue'
+import FullFooter from '@/components/footer/FullFooter.vue'
 import { ref, onMounted } from 'vue'
-import { useMovieStore } from '@/stores/movie';
+import { useMovieStore } from '@/stores/movie'
 import { useGenreStore } from '@/stores/genres'
-import PreLoader from '@/components/loading/PreLoader.vue';
-const showPreloader = ref(true);
-const selectedGenre = ref(null);
+import PreLoader from '@/components/loading/PreLoader.vue'
+const showPreloader = ref(true)
+const selectedGenre = ref(null)
 
 const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -22,7 +22,7 @@ const listMovies = async (genreId) => {
   await movieStore.getAllMovie(genreId)
   showPreloader.value = false
 }
-const formatYear = (date) => new Date(date).getFullYear(); 
+const formatYear = (date) => new Date(date).getFullYear()
 </script>
 
 <template>
@@ -35,34 +35,46 @@ const formatYear = (date) => new Date(date).getFullYear();
       <div class="movie-list">
         <div v-for="movie in movieStore.movies" :key="movie.id" class="movie-card">
           <router-link :to="`/movie/${movie.id}`">
-            <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" width="150" />
+            <img
+              :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+              :alt="movie.title"
+              width="150"
+            />
           </router-link>
           <div class="movie-details">
             <h2 class="movie-title">{{ movie.title }}</h2>
             <div class="selected-genre">
               <span v-if="selectedGenre">{{ genreStore.getGenreName(selectedGenre) }}</span>
               <span v-if="selectedGenre && movieStore.movies.length"> • </span>
-              <span v-if="movieStore.movies.length">{{ formatYear(movieStore.movies[0].release_date) }}</span>
+              <span v-if="movieStore.movies.length">{{
+                formatYear(movieStore.movies[0].release_date)
+              }}</span>
             </div>
           </div>
         </div>
         <v-card>
-          <v-layout>
-            <v-navigation-drawer expand-on-hover rail class="navigation-drawer">
-              <v-list>
-                <v-list-item prepend-icon="bi bi-person-circle" title="Sandra Adams"
-                  subtitle="sandra_a88@gmailcom"></v-list-item>
-              </v-list>
-              <v-divider></v-divider>
-              <v-list density="compact" nav>
-                <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id"
-                  @click="listMovies(genre.id)">
-                  {{ genre.name }}</v-list-item>
-              </v-list>
-            </v-navigation-drawer>
-            <v-main style="height: 250px"></v-main>
-          </v-layout>
-        </v-card>
+        <v-layout>
+          <v-navigation-drawer expand-on-hover rail>
+            <v-list>
+              <v-list-item
+                prepend-avatar="bi bi-person-circle"
+                title="Sandra Adams"
+                subtitle="sandra_a88@gmailcom"
+              ></v-list-item>
+            </v-list>
+
+            <v-divider></v-divider>
+
+            <v-list density="compact" nav>
+              <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)">
+                <template #title>{{ genre.name }}</template>
+              </v-list-item>
+            </v-list>
+          </v-navigation-drawer>
+
+          <v-main style="height: 250px"></v-main>
+        </v-layout>
+      </v-card>
       </div>
     </div>
   </div>
@@ -94,7 +106,7 @@ const formatYear = (date) => new Date(date).getFullYear();
   cursor: pointer;
   background-color: #e6e6e6;
   color: #000000;
-  transition: .4s;
+  transition: 0.4s;
   box-shadow: 0 0 0.5rem #ffffff;
 }
 
@@ -106,7 +118,6 @@ const formatYear = (date) => new Date(date).getFullYear();
 
 .navigation-drawer {
   margin-top: 80px;
-
 }
 
 .movie-list {
@@ -116,16 +127,19 @@ const formatYear = (date) => new Date(date).getFullYear();
 }
 
 .img-container {
-margin-left: 150px;
-margin-top: 120px;
+  margin-left: 150px;
+  margin-top: 120px;
 }
 
-
 .movie-card {
-  max-width: 200px; 
+  max-width: 200px;
   text-align: center;
 }
 
+.movie-card:hover {
+  transform: scale(1.05); /* Ajuste o valor conforme necessário para a escala desejada */
+  transition: transform 0.3s ease; /* Adicione uma transição suave */
+}
 .movie-card img {
   width: 100%;
   height: auto;
