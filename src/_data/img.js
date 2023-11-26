@@ -42,6 +42,7 @@ const imgs = ref(
         src: 'https://is1-ssl.mzstatic.com/image/thumb/Features116/v4/92/48/af/9248af7f-de6b-bb72-e401-6ea6c2f7f93c/1ef189b5-bc0b-423f-ad10-145c0c5faeed.lsr/738x416fe.webp',
         alt: 'Not Filme'
       },
+      
   
     ]
   )
