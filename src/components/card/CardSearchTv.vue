@@ -1,6 +1,7 @@
 <script setup>
 import { useSearchStore } from '@/stores/search'
 import BoxSearch from './BoxSearch.vue';
+
 const searchStore = useSearchStore()
 </script>
 
@@ -8,8 +9,8 @@ const searchStore = useSearchStore()
   <div class="container-max">
     <div class="box-total">
       <box-search/>
-      <div v-for="item in searchStore.search" :key="item.id" class="card-one">
-          <router-link :to="`/movie/${item.id}`" class="text-black text-deco">
+      <div v-for="item in searchStore.searchTv" :key="item.id" class="card-one">
+          <router-link :to="`/tv/${item.id}`" class="text-black text-deco">
         <div class="display">
           <img
             :src="
@@ -22,7 +23,6 @@ const searchStore = useSearchStore()
             class="img"
           />
           <div class="text">
-            <p class="title">{{ item.title }}</p>
             <p class="name">{{ item.name }}</p>
             <p class="date">Date</p>
             <p class="sinopse">{{ item.overview }}</p>

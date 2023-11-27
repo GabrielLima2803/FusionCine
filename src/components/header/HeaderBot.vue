@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import Search from './Search.vue';
+import SearchModal from './SearchModal.vue';
 const isHeaderHidden = ref(false)
 let prevScrollY = window.scrollY
 
@@ -47,7 +47,7 @@ onMounted(() => {
     <div class="header__rest">
       <div class="FSL">
         <div class="WrapFL">
-          <search/>
+          <search-modal/>
             <router-link to="/favorito">
                 <i class="bi bi-heart favorito hover text-white"></i>
             </router-link>
