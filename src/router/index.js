@@ -10,6 +10,8 @@ import PessoasView from '@/views/Outros/PessoasView.vue'
 import SoloPeopleView from '@/views/Outros/SoloPeopleView.vue'
 import FavoritoView from '@/views/Favoritos/FavoritoView.vue'
 import SearchView from '@/views/Outros/SearchView.vue'
+import SearchTvView from '@/views/Outros/SearchTvView.vue'
+import SearchPersonView from '@/views/Outros/SearchPersonView.vue'
 import SuporteView from '@/views/Outros/SuporteView.vue'
 
 
@@ -78,6 +80,16 @@ const router = createRouter({
       path: '/suporte',
       name: 'suporte',
       component: SuporteView
+    },
+    {
+      path: '/searchTv',
+      name: 'SearchTv',
+      component: SearchTvView
+    },
+    {
+      path: '/searchPerson',
+      name: 'SearchPerson',
+      component: SearchPersonView
     }
   ]
 })
