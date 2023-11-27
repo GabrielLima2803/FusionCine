@@ -4,6 +4,9 @@
 <template>
 <div id="Box">
     <div class="text">
+      <div>
+         
+      </div>
         <div class="h1">
         <h1 class="text-center">
           Assista em qualquer lugar no app Fusion Cine.
@@ -13,23 +16,25 @@
         <p class="text-center">O app Fusion Cine já está nos seus aparelhos favoritos.
          E você também pode assistir online em </p>
       </div>
+      <div class="display">
         <div class="cel m-20">
-          <i class="bi bi-phone-landscape"></i>
+          <i class="bi bi-phone-landscape tamanho "></i>
           <p>Celular</p>
         </div>
         <div>
-          <i class="bi bi-tablet-landscape"></i>
+          <i class="bi bi-tablet-landscape tamanho"></i>
           <p>Tablet</p>
         </div>
         <div>
-          <i class="bi bi-laptop"></i>
-        </div>
+          <i class="bi bi-laptop tamanho"></i>
           <p>Notebook</p>
         </div>
         <div>
-          <i class="bi bi-tv"></i>
+          <i class="bi bi-tv tamanho"></i>
           <p>TV</p>
-    </div>
+        </div>
+      </div>
+      </div>
     </div>
 </template> 
 
@@ -40,7 +45,13 @@ h1{
   text-align: center;
   width: 900px;
   margin-left: 260px;
+} 
+.tamanho{
+  font-size:  90px;
 }
-
-
+.display{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+}
 </style>
