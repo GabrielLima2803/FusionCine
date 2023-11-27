@@ -14,6 +14,8 @@ const useSearch = new useSearchStore()
 
 function search() {
   useSearch.SearchMulti(searchTerm.value)
+  useSearch.SearchTv(searchTerm.value)
+  useSearch.SearchPerson(searchTerm.value)
   router.push({name: 'resultados'})
 }
 
