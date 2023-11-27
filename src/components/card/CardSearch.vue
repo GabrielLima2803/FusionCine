@@ -1,23 +1,13 @@
 <script setup>
 import { useSearchStore } from '@/stores/search'
-
+import BoxSearch from './BoxSearch.vue';
 const searchStore = useSearchStore()
 </script>
 
 <template>
   <div class="container-max">
     <div class="box-total">
-      <!-- <div class="box-search">
-        <table>
-          <tr>
-            <th class="result">Resultado da busca</th>
-          </tr>
-          <tr>
-            <td>Filmes</td>
-            <td>Séries</td>
-          </tr>
-        </table>
-      </div> -->
+      <box-search/>
       <div v-for="item in searchStore.search" :key="item.id" class="card-one">
           <router-link :to="`/movie/${item.id}`" class="text-black text-deco">
         <div class="display">
@@ -55,6 +45,7 @@ const searchStore = useSearchStore()
   max-width: 1420px;
   margin: 0 auto;
 }
+
 
 .card-one {
   display: flex;
