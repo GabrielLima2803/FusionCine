@@ -2,22 +2,14 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useTvStore } from '@/stores/tv.js';
-import { onMounted, ref, computed } from 'vue';
+import { onMounted,computed } from 'vue';
 const tvStore = useTvStore()
 
-const infoVisible = ref(-1)
 
 onMounted(async () => {
   await tvStore.getAllTv()
 })
 
-const showInfo = (index) => {
-  infoVisible.value = index
-}
-
-const hideInfo = () => {
-  infoVisible.value = -1
-}
 const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
 
 </script>
@@ -28,41 +20,18 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
     <div class="container-card">
       <carousel :items-to-show="2.8" class="Margin">
         <slide v-for="(series, index) in first9Tv" :key="series.id">
-          <div class="img-card">
-            <div class="img-container">
-              <div class="counter">
-                <p>{{ `${index + 1}` }}</p>
-              </div>
-              <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="165"
+          <router-link class="underline" :to="`/tv/${series.id}`">
+            <div class="img-card">
+              <div class="img-container">
+                <div class="counter">
+                  <p>{{ `${index + 1}` }}</p>
+                </div>
+                <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.title" width="165"
                 class="z-3 img" @mouseover="showInfo(index)" @mouseout="hideInfo(index)" />
-              <div v-if="infoVisible === index" class="info info-transition active">
-
-                <div class="container-trailer">
-                </div>
-                <div class="container-bot">
-                  <div class="container-icon display">
-                    <i class="bi bi-play-fill text-aling"></i>
-                    <i class="bi bi-plus-circle text-aling"></i>
-                    <i class="bi bi-heart-fill text-aling"></i>
-                  </div>
-                  <div class="container-info">
-                    <p class="text-green mt-3 text-aling">96% relevante</p>
-                    <div class="display mt-3">
-                      <p class="idade">14</p>
-                      <p class="ml-2 temp">5 temporadas</p>
-                      <i class="bi bi-badge-hd-fill ml-2 icon-hd"></i>
-                    </div>
-                  </div>
-                  <div class="container-tv display mt-5">
-                    <p>{{ series.name }}</p>
-                    <p class="ml-2"> • Tipo:</p>
-                    <p class="ml-2"> • Genêro:</p>
-                  </div>
-                </div>
-
+         
               </div>
             </div>
-          </div>
+          </router-link>
         </slide>
         <template #addons>
           <navigation />
@@ -76,6 +45,9 @@ const first9Tv = computed(() => tvStore.tvs.slice(0, 9))
 .img:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease-in-out;
+}
+.underline{
+  text-decoration: none;
 }
 
 .container-bot {
