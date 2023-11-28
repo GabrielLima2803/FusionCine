@@ -46,16 +46,16 @@
                                 <i class="bi bi-instagram"></i>
                                 <h4 class="informações-pessoais">Informações Pessoais</h4>
                                 <p class="conhecido-por-down">conhecido(a) por</p>
+                                <p class="mt-2">{{ person.known_for_department }}</p>
                                 <p class="creditado-em"> creditado(a) em</p>
                                 <p class="genero"> Gênero </p>
+                                <p class="mt-2">{{ person.gender }}</p>
                                 <p class="nascimento">Nascimento</p>
+                                <p class="mt-2">{{ person.birthday }}</p>
                                 <p class="local-de-nascimento">Local de nascimento (inglês)</p>
-                                <p class="tambem-conhecido">Também conhecido(a) como</p>
-                                <p class="avaliação-conteudo">Avaliação do conteúdo</p> 
-                                <div class="box-avaliação">
-                                    <p class="numero-avaliação">100</p>
-
-                                </div>
+                                <p class="mt-2">{{ person.place_of_birth }}</p>
+                                <!-- <p class="tambem-conhecido">Também conhecido(a) como</p>
+                                <p class="mt-2">{{ person.also_known_as }}</p> -->
                             </div>
 
                         </div>
@@ -65,7 +65,7 @@
                             </h1>
                             <div class="descrition">
                                 <h2 class="biografia">Biografia</h2>
-                                <p class="mt-3">Descrição</p>
+                                <p class="mt-3">{{ person.biography }}</p>
                             </div>
                             <div>
                                 <h3 class="conhecido-up "> Conhecido(a) por</h3>
