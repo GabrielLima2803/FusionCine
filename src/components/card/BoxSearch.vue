@@ -1,8 +1,14 @@
 <script setup>
-import { useSearchStore } from '@/stores/search'
-import { onMounted } from 'vue';
-const searchStore = useSearchStore()
-// 
+// import { useSearchStore } from '@/stores/search'
+// import { onMounted } from 'vue';
+// const searchStore = useSearchStore()
+
+
+// onMounted(async () => {
+//   await searchStore.SearchMulti()
+//   await searchStore.SearchTv()
+//   await searchStore.SearchPerson()
+// })
 
 </script>
 
@@ -14,7 +20,7 @@ const searchStore = useSearchStore()
       </tr>
       <tr>
         <router-link to="/search" class="clear">
-          <td>Filmes</td>
+          <td>Filmes </td>
         </router-link>
         <router-link to="/searchTv" class="clear">
           <td>Séries</td>
