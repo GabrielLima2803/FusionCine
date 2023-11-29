@@ -35,6 +35,7 @@ const searchStore = useSearchStore()
     <button @click="searchStore.backPage" :disabled="searchStore.currentPage <= 1" class="button prev">
       ← Anterior
     </button>
+    {{ searchStore.currentPage }}
     <button @click="searchStore.nextPage" class="button next">
       Próxima →
     </button>
