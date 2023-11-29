@@ -6,7 +6,6 @@ import { useMovieStore } from '@/stores/movie'
 import { useGenreStore } from '@/stores/genres'
 import PreLoader from '@/components/loading/PreLoader.vue'
 const showPreloader = ref(true)
-const selectedGenre = ref(null)
 
 const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -44,8 +43,6 @@ const formatYear = (date) => new Date(date).getFullYear()
           <div class="movie-details">
             <h2 class="movie-title">{{ movie.title }}</h2>
             <div class="selected-genre">
-              <span v-if="selectedGenre">{{ genreStore.getGenreName(selectedGenre) }}</span>
-              <span v-if="selectedGenre && movieStore.movies.length"> • </span>
               <span v-if="movieStore.movies.length">{{
                 formatYear(movieStore.movies[0].release_date)
               }}</span>
@@ -55,16 +52,6 @@ const formatYear = (date) => new Date(date).getFullYear()
         <v-card>
         <v-layout>
           <v-navigation-drawer expand-on-hover rail>
-            <v-list>
-              <v-list-item
-                prepend-avatar="bi bi-person-circle"
-                title="Sandra Adams"
-                subtitle="sandra_a88@gmailcom"
-              ></v-list-item>
-            </v-list>
-
-            <v-divider></v-divider>
-
             <v-list density="compact" nav>
               <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)">
                 <template #title>{{ genre.name }}</template>
@@ -82,34 +69,6 @@ const formatYear = (date) => new Date(date).getFullYear()
 </template>
 
 <style scoped>
-.genre-list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-  margin-top: 80px;
-}
-
-.genre-item {
-  background-color: #000000;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  align-self: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-}
-
-.genre-item:hover {
-  cursor: pointer;
-  background-color: #e6e6e6;
-  color: #000000;
-  transition: 0.4s;
-  box-shadow: 0 0 0.5rem #ffffff;
-}
-
 .movie-genres {
   padding: 0.2rem 0.5rem;
   color: #666;
@@ -137,8 +96,8 @@ const formatYear = (date) => new Date(date).getFullYear()
 }
 
 .movie-card:hover {
-  transform: scale(1.05); /* Ajuste o valor conforme necessário para a escala desejada */
-  transition: transform 0.3s ease; /* Adicione uma transição suave */
+  transform: scale(1.05);
+  transition: transform 0.3s ease; 
 }
 .movie-card img {
   width: 100%;
