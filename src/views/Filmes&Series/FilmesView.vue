@@ -49,6 +49,14 @@ const formatYear = (date) => new Date(date).getFullYear()
             </div>
           </div>
         </div>
+        <!-- <div class="NextBack">
+      <button
+                class="button prev"
+      >
+        ← Anterior
+      </button>
+      <button  class="button next">Próxima →</button>
+    </div> -->
         <v-card>
         <v-layout>
           <v-navigation-drawer expand-on-hover rail>
@@ -64,6 +72,7 @@ const formatYear = (date) => new Date(date).getFullYear()
       </v-card>
       </div>
     </div>
+    
   </div>
   <full-footer />
 </template>
@@ -74,7 +83,37 @@ const formatYear = (date) => new Date(date).getFullYear()
   color: #666;
   font-size: 0.8rem;
 }
+.NextBack {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
+.button {
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+table
 .navigation-drawer {
   margin-top: 80px;
 }
