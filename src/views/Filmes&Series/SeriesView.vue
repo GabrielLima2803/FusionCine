@@ -68,7 +68,37 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
   color: #666;
   font-size: 0.8rem;
 }
+.NextBack {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
+.button {
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+table
 .navigation-drawer {
   margin-top: 80px;
 }
