@@ -22,6 +22,17 @@ const listMovies = async (genreId) => {
   showPreloader.value = false
 }
 const formatYear = (date) => new Date(date).getFullYear()
+
+const next = async () => {
+  showPreloader.value = true;
+  await movieStore.nextPage();
+  showPreloader.value = false;
+}
+const prev = async () => {
+  showPreloader.value = true;
+  await movieStore.prevPage();
+  showPreloader.value = false;
+}
 </script>
 
 <template>
@@ -29,6 +40,13 @@ const formatYear = (date) => new Date(date).getFullYear()
     <header-principal />
     <div class="container">
       <PreLoader v-if="showPreloader" />
+      <div class="container-page">
+          <ul class="pagination mt-6">
+            <li @click="prev" class="page-item">Voltar Página</li>
+            <li>{{ movieStore.currentPage }}</li>
+            <li @click="next" class="page-item">Próxima Página</li>
+          </ul>
+        </div>
     </div>
     <div class="img-container">
       <div class="movie-list">
@@ -88,7 +106,29 @@ const formatYear = (date) => new Date(date).getFullYear()
   justify-content: space-between;
   margin-top: 20px;
 }
+.container-page {
+  text-align: center;
+}
 
+.pagination {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+}
+
+.page-item {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 12px;
+  background-color: #000000;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.page-item:hover {
+  background-color: #2b2929;
+}
 .button {
   background-color: #000000;
   color: #fff;
