@@ -8,24 +8,29 @@ export const useMovieStore = defineStore('movie', () => {
   const state = reactive({
     movies: [],
     showMoreCast: false, 
+    currentPage: 1,
+    totalPages: 0,
   });
 
   const movies = computed(() => state.movies);
+  const currentPage = computed(() => state.currentPage);
 
-  const getAllMovie = async (genreId) => {
+  const getAllMovie = async (genreId = null, page = 1) => {
     try {
-      const response = await api.get(`discover/movie`, {
-        params: {
-          with_genres: genreId,
-          language: 'pt-BR',
-        },
-      });
+      const params = {
+        language: 'pt-BR',
+        page: page,
+        with_genres: genreId
+      };
+  
+      const response = await api.get('discover/movie', { params });
       state.movies = response.data.results;
+      state.totalPages = response.data.total_pages; 
     } catch (error) {
       console.error('Erro ao buscar os filmes:', error);
     }
   };
-
+  
   const formatDate = (date) => {
     const formattedDate = format(new Date(date), 'dd MMMM yyyy', { locale: ptBR });
     return formattedDate.replace(/ /g, ' de ');
@@ -59,6 +64,22 @@ export const useMovieStore = defineStore('movie', () => {
     return keywords.keywords.map((keyword) => keyword.name);
   };
 
+  const getMoviesByPage = (page) => {
+    state.currentPage = page;
+    getAllMovie(null, page);
+  };
+
+  const nextPage = () => {
+    if (state.currentPage < state.totalPages) {
+      getMoviesByPage(state.currentPage + 1);
+    }
+  };
+  
+  const prevPage = () => {
+    if (state.currentPage > 1) {
+      getMoviesByPage(state.currentPage - 1);
+    }
+  };  
   return {
     movies,
     getAllMovie,
@@ -68,5 +89,8 @@ export const useMovieStore = defineStore('movie', () => {
     openTrailer,
     toggleShowMore,
     getKeywordsNames,
+    prevPage,
+    nextPage,
+    currentPage,
   };
 });
