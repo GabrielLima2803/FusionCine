@@ -6,16 +6,22 @@ import FullFooter from '@/components/footer/FullFooter.vue';
 <template>
     <header-principal />
     <div class="container-max">
+        <div>
+            <img src="@/assets/img/suporte.jpg" alt="">
+        </div>
         <h1>Suporte do FusionCine</h1>
         <div class="d-flex justify-content-around marginTop">
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+            <div>
+                <i class="bi bi-credit-card cartao"></i>
+                <p>Assinaturas e cobrança ></p>
             </div>
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+            <div>
+                <i class="bi bi-tv tv"></i>
+                <p>Suporte da TV ></p>
             </div>
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+            <div>
+                <i class="bi bi-laptop notebook"></i>
+                <p>Serviço e reparos ></p>
             </div>
         </div>
     </div>
@@ -62,36 +68,6 @@ import FullFooter from '@/components/footer/FullFooter.vue';
     color: #000000;
     font-weight: bold;
 }
-.box-med{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 200px;
-    margin-top: 100px;
-}
-.box-med-2{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 500px;
-    margin-top: 30px;
-}
-.box-med-3{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 300px;
-    margin-top: 30px;
-}
 .cursor{
     cursor: pointer;
 }
@@ -115,25 +91,9 @@ h1 {
     font-weight: bold;
     text-align: center;
 }
-
-.box {
-    background-color: #f5f5f7;
-    padding: 40px 8.33%;
-    width: 300px;
-    cursor: pointer;
-    height: 150px;
-    transition: all .2s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
 .marginTop {
-    margin-top: 100px;
+    margin-top: 50px;
 }
-
-.box:hover {
-    transform: scale(1.1);
-}
-
 .container-box {
     background-color: rgb(219, 219, 219);
     margin-top: 100px;
@@ -151,6 +111,13 @@ h1 {
     height: 760px;
     overflow: hidden;
 }
-
-
+.cartao{
+    font-size: 500%;
+}
+.tv{
+    font-size: 500%;
+}
+.notebook{
+    font-size: 500%;
+}
 </style>
