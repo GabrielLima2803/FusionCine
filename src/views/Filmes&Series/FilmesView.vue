@@ -43,7 +43,7 @@ const prev = async () => {
       <div class="container-page">
           <ul class="pagination mt-6">
             <li @click="prev" class="page-item">Voltar Página</li>
-            <li class="mt-4">{{ movieStore.currentPage }}</li>
+            <li class="mt-4 li">{{ movieStore.currentPage }}</li>
             <li @click="next" class="page-item mt-4">Próxima Página</li>
           </ul>
         </div>
@@ -100,6 +100,22 @@ const prev = async () => {
   padding: 0.2rem 0.5rem;
   color: #666;
   font-size: 0.8rem;
+}
+.li {
+  list-style: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.li:hover {
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
 }
 .NextBack {
   display: flex;
