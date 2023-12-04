@@ -9,6 +9,7 @@ export const useTvStore = defineStore('tv', () => {
     totalPages: 0
   })
   const tvs = computed(() => state.tvs)
+  const currentPage = computed(() => state.currentPage)
 
   const getAllTv = async (genreId = null, page = 1) => {
     try {
@@ -43,7 +44,7 @@ export const useTvStore = defineStore('tv', () => {
     }
   };  
 
-  return { tvs, getAllTv, nextPage, prevPage }
+  return { tvs, getAllTv, nextPage, prevPage, currentPage }
 
 
 })
