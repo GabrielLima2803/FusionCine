@@ -42,7 +42,8 @@ const prev = async () => {
           <div class="container-page">
           <ul class="pagination mt-6">
             <li @click="prev" class="page-item">Voltar Página</li>
-            <li @click="next" class="page-item">Próxima Página</li>
+            <li class="mt-4">{{ tvStore.currentPage }}</li>
+            <li @click="next" class="page-item mt-4">Próxima Página</li>
           </ul>
         </div>
     </div>
