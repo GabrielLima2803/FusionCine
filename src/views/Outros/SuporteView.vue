@@ -9,17 +9,17 @@ import FullFooter from '@/components/footer/FullFooter.vue';
         <div>
             <img src="@/assets/img/suporte.jpg" alt="">
         </div>
-        <h1>Suporte do FusionCine</h1>
+        <h1 class="tex-principal">Suporte do FusionCine</h1>
         <div class="d-flex justify-content-around marginTop">
-            <div>
+            <div class="cartaoDiv">
                 <i class="bi bi-credit-card cartao"></i>
                 <p>Assinaturas e cobrança ></p>
             </div>
-            <div>
+            <div class="tvDiv">
                 <i class="bi bi-tv tv"></i>
                 <p>Suporte da TV ></p>
             </div>
-            <div>
+            <div class="laptopDiv">
                 <i class="bi bi-laptop notebook"></i>
                 <p>Serviço e reparos ></p>
             </div>
@@ -60,10 +60,21 @@ import FullFooter from '@/components/footer/FullFooter.vue';
 
 <style scoped>
 .container-max {
-    max-width: 1420px;
     margin: 0 auto;
-    margin-top: 125px;
+    background-color: rgb(240, 240, 240);
+    width: 100%;
+    height: 100%; 
 }
+.text-principal{
+    padding: 30px;
+}
+
+.cartaoDiv{
+    text-align: center;
+    padding: 20px;
+}
+
+
 .texto-destaque {
     color: #000000;
     font-weight: bold;
@@ -95,7 +106,7 @@ h1 {
     margin-top: 50px;
 }
 .container-box {
-    background-color: rgb(219, 219, 219);
+    background-color: white;
     margin-top: 100px;
     padding: 30px;
 }
