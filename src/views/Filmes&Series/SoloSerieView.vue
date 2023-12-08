@@ -3,7 +3,6 @@ import { onMounted, ref } from 'vue';
 import api from '@/plugins/axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
 import FullFooter from '@/components/footer/FullFooter.vue';
-import CardPop from '@/components/card/CardPop.vue';
 const tvs = ref([]);
 const props = defineProps({
     id: Number
@@ -77,9 +76,9 @@ const getKeywordsNames = (keywords) => {
             <i class="bi bi-heart"></i>
             <button class="ml-3"> Alugar </button>
           </div>
-          <div class="avi mt-6 d-flex">
-            <i class="bi bi-star-fill text-white"></i>
-            <p class="ml-4 text-white"> {{ serie.vote_average }}</p>
+          <div class="avi mt-6 d-flex info-opc">
+            <i class="bi bi-star-fill "></i>
+            <p class="ml-4 "> {{ serie.vote_average }}</p>
           </div>
         </div>
       </div>
