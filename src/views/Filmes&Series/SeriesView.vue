@@ -63,7 +63,7 @@ const prev = async () => {
         <v-card>
         <v-layout>
           <v-navigation-drawer expand-on-hover rail>
-            <v-list density="compact" nav>
+            <v-list density="compact" nav class="margin-top">
               <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listTv(genre.id)">
                 <template #title>{{ genre.name }}</template>
               </v-list-item>
@@ -83,6 +83,9 @@ const prev = async () => {
   padding: 0.2rem 0.5rem;
   color: #666;
   font-size: 0.8rem;
+}
+.margin-top{
+  margin-top: 90px;
 }
 .li {
   list-style: none;

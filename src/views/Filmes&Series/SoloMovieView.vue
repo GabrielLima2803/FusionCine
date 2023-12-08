@@ -87,9 +87,9 @@ const getKeywordsNames = (keywords) => {
             <i class="bi bi-heart"></i>
             <button class="ml-3"> Alugar </button>
           </div>
-          <div class="avi mt-6 d-flex">
-            <i class="bi bi-star-fill text-white"></i>
-            <p class="ml-4 text-white"> {{ movie.vote_average }}</p>
+          <div class="avi mt-6 d-flex info-opc margin-b">
+            <i class="bi bi-star-fill "></i>
+            <p class="ml-4 "> {{ movie.vote_average }}</p>
           </div>
         </div>
       </div>
