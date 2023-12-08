@@ -35,6 +35,18 @@ onMounted(async () => {
     peoples.value = [peopleDetail]
   }
 })
+
+const filmesVisiveis = ref(12);
+const todosFilmesVisiveis = ref(false);
+
+const loadMore = () => {
+  // Verificar se há dados antes de acessar o cast
+  if (peoples.value.length > 0 && peoples.value[0].cast) {
+    todosFilmesVisiveis.value = !todosFilmesVisiveis.value;
+    filmesVisiveis.value = todosFilmesVisiveis.value ? peoples.value[0].cast.length : 12;
+  }
+};
+
 </script>
 
 <template>
@@ -45,20 +57,14 @@ onMounted(async () => {
         <div class="display">
           <div class="box-img">
             <div class="container-img">
-              <img
-                :src="`https://image.tmdb.org/t/p/w500${person.profile_path}`"
-                :alt="`Imagem de ${person.name}`"
-                class="img-profile"
-                width="300"
-                height="450"
-              />
+              <img :src="`https://image.tmdb.org/t/p/w500${person.profile_path}`" :alt="`Imagem de ${person.name}`"
+                class="img-profile" width="300" height="450" />
             </div>
             <div class="box-IP">
               <i class="bi bi-instagram"></i>
               <h4 class="informações-pessoais">Informações Pessoais</h4>
               <p class="conhecido-por-down">conhecido(a) por</p>
               <p class="mt-2">{{ person.known_for_department }}</p>
-              <p class="creditado-em">creditado(a) em</p>
               <p class="genero">Gênero</p>
               <p v-if="person.gender === 1" class="mt-2">Feminino</p>
               <p v-else-if="person.gender === 2" mt-2>Masculino</p>
@@ -78,14 +84,23 @@ onMounted(async () => {
               <p class="mt-3">{{ person.biography }}</p>
             </div>
             <div class="conhecido-up">Conhecido(a) por</div>
-            <div class="row filmes">
-              <div v-for="credit in person.cast" :key="credit.id" class="col-3">
-                <img
-                  :src="`https://image.tmdb.org/t/p/w500${credit.poster_path}`"
-                  :alt="credit.title"
-                  class="img-filmes"
-                />
-              </div>
+            <div v-if="peoples.length > 0">
+      <div class="row filmes">
+        <div v-for="(credit, index) in person.cast.slice(0, filmesVisiveis)" :key="index" class="col-2">
+          <img
+            :src="`https://image.tmdb.org/t/p/w500${credit.poster_path}`"
+            :alt="credit.title"
+            class="img-filmes"
+          />
+        </div>
+      </div>
+
+      <!-- Adicionar botão "Ver Mais/Menos" -->
+      <div class="button-ver mt-5">
+        <button v-if="person.cast && person.cast.length > 12" @click="loadMore">
+          {{ todosFilmesVisiveis ? 'Ver Menos' : 'Ver Mais' }}
+        </button>
+      </div>
             </div>
           </div>
         </div>
@@ -112,7 +127,11 @@ onMounted(async () => {
 .img-profile {
   border-radius: 10px;
 }
-
+.button-ver{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .display {
   display: flex;
 }
@@ -121,45 +140,56 @@ onMounted(async () => {
   cursor: pointer;
   font-size: 20px;
 }
+
 .box-IP {
   margin-top: 10px;
 }
+
 .informações-pessoais {
   font-weight: bold;
   font-size: 22px;
   margin-top: 30px;
 }
+
 .conhecido-por-down {
   font-weight: 600;
   margin-top: 15px;
 }
+
 .creditado-em {
   font-weight: 600;
   margin-top: 30px;
 }
+
 .genero {
   font-weight: 600;
   margin-top: 30px;
 }
+
 .nascimento {
   margin-top: 30px;
   font-weight: 600;
 }
+
 .local-de-nascimento {
   margin-top: 30px;
   font-weight: 600;
 }
+
 .tambem-conhecido {
   margin-top: 30px;
   font-weight: 600;
 }
+
 .avaliação-conteudo {
   margin-top: 100px;
   font-weight: bold;
 }
+
 .numero-avaliação {
   margin-left: 15px;
 }
+
 .box-avaliação {
   background-color: darkgray;
   width: 100%;
@@ -167,6 +197,7 @@ onMounted(async () => {
   padding: 10px;
   border-radius: 10px;
 }
+
 .info-person {
   margin-left: 30px;
 }
@@ -191,5 +222,4 @@ onMounted(async () => {
   border-radius: 10px;
   margin-top: 15px;
   margin-left: 10px;
-}
-</style>
+}</style>
