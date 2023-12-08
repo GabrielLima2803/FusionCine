@@ -88,8 +88,8 @@ const getKeywordsNames = (keywords) => {
             <button class="ml-3"> Alugar </button>
           </div>
           <div class="avi mt-6 d-flex">
-            <i class="bi bi-star-fill"></i>
-            <p class="ml-4"> {{ movie.vote_average }}</p>
+            <i class="bi bi-star-fill text-white"></i>
+            <p class="ml-4 text-white"> {{ movie.vote_average }}</p>
           </div>
         </div>
       </div>
@@ -104,15 +104,17 @@ const getKeywordsNames = (keywords) => {
   <div v-for="(castMember) in movie.credits.cast.slice(0, showMoreCast ? undefined : maxVisibleCastMembers)"
     :key="castMember.id" class="m-3 wid-card">
     <div class="card-container">
-      <div class="circle">
-        <img v-if="castMember.profile_path" :src="`https://image.tmdb.org/t/p/w500${castMember.profile_path}`"
+      <router-link :to="`/people/${castMember.id}`" class="reset">
+        <div class="circle">
+          <img v-if="castMember.profile_path" :src="`https://image.tmdb.org/t/p/w500${castMember.profile_path}`"
           class="cast-member-image mask full mx-auto" />
-        <img v-else src="@/assets/img/fallback.jpg" alt="Fallback Image" class="cast-member-image mask full" />
-      </div>
-      <div class="card-details">
-        <p class="name-member">{{ castMember.name }}</p>
-        <p class="char">{{ castMember.character }}</p>
-      </div>
+          <img v-else src="@/assets/img/fallback.jpg" alt="Fallback Image" class="cast-member-image mask full" />
+        </div>
+        <div class="card-details">
+          <p class="name-member">{{ castMember.name }}</p>
+          <p class="char">{{ castMember.character }}</p>
+        </div>
+      </router-link>
     </div>
   </div>
 </div>
@@ -203,6 +205,10 @@ const getKeywordsNames = (keywords) => {
   max-width: 1400px;
   clear: both;
   margin: 0 auto;
+}
+.reset{
+  color: black;
+  text-decoration: none;
 }
 
 .info-opc {

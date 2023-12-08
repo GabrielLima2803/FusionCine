@@ -50,14 +50,7 @@ const toggleShowMore = () => {
 const getKeywordsNames = (keywords) => {
     return keywords.results.map(keyword => keyword.name);
 };
-const getDirectorName = (crew) => {
-    const director = crew.find(member => member.job === 'Director');
-    return director ? director.name : 'Não disponível';
-};
 
-const getWriters = (crew) => {
-    return crew.filter(member => member.department === 'Writing');
-};
 </script>
 
 <template>
@@ -85,8 +78,8 @@ const getWriters = (crew) => {
             <button class="ml-3"> Alugar </button>
           </div>
           <div class="avi mt-6 d-flex">
-            <i class="bi bi-star-fill"></i>
-            <p class="ml-4"> {{ serie.vote_average }}</p>
+            <i class="bi bi-star-fill text-white"></i>
+            <p class="ml-4 text-white"> {{ serie.vote_average }}</p>
           </div>
         </div>
       </div>

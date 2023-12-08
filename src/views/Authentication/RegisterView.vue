@@ -62,12 +62,12 @@ const registerUser = async () => {
                     </div>
 
                     <div class="input-box">
-                        <label for="confirmPassword">Confirme sua Senha</label>
+                        <label for="confirmPassword" class="text-white">Confirme sua Senha</label>
                         <input v-model="confirmPassword" id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
                     </div>
                 </div>
 
-                <div class="continue-button">
+                <div class="continue-button text-white">
                     <button @click.prevent="registerUser">Continuar</button>
                 </div>
             </form>
@@ -83,6 +83,9 @@ const registerUser = async () => {
     justify-content: center;
     align-items: center;
     background: #0c0ce94d;
+}
+.text-white{
+    color: white;
 }
 
 .container {
