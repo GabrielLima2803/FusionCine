@@ -1,13 +1,31 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
+import axios from 'axios';
 
-const showPassword = ref(false)
+const username = ref('');
+const password = ref('');
+const showPassword = ref(false);
 
 const showHide = () => {
-  showPassword.value = !showPassword.value
-}
+  showPassword.value = !showPassword.value;
+};
 
-const inputType = computed(() => (showPassword.value ? 'text' : 'password'))
+const inputType = computed(() => (showPassword.value ? 'text' : 'password'));
+
+const loginUser = async () => {
+  try {
+    const userData = {
+      username: username.value, // Mude para capturar o nome de usuário
+      password: password.value,
+    };
+
+    const response = await axios.post('http://localhost:3000/login', userData);
+
+    console.log('Usuário autenticado com sucesso:', response.data);
+  } catch (error) {
+    console.error('Erro ao autenticar o usuário:', error.message);
+  }
+};
 </script>
 
 <template>
@@ -16,16 +34,19 @@ const inputType = computed(() => (showPassword.value ? 'text' : 'password'))
       <form class="form-section">
         <h1>Login</h1>
         <div class="input-box">
-          <input type="text" required />
-          <label>Insira seu email</label>
-        </div>
-        <div class="input-box">
-          <input class="password" :type="inputType" required />
-          <label>Insira sua senha</label>
-          <div class="eye-wrapper" @click="showHide">
-            <span class="close" v-if="!showPassword"> <i class="bi bi-eye-slash"></i> </span>
-            <span class="open" v-else> <i class="bi bi-eye"></i> </span>
-          </div>
+      <input v-model="username" type="text" required />
+      <label>Insira seu nome de usuário</label>
+    </div>
+
+    <div class="input-box">
+      <input v-model="password" :type="inputType" required />
+      <label>Insira sua senha</label>
+      <div class="eye-wrapper" @click="showHide">
+        <span class="close" v-if="!showPassword"> <i class="bi bi-eye-slash"></i> </span>
+        <span class="open" v-else> <i class="bi bi-eye"></i> </span>
+      </div>
+    </div>
+    <div>
         </div>
         <div class="remember-forgot">
           <label for="remember">
@@ -34,7 +55,7 @@ const inputType = computed(() => (showPassword.value ? 'text' : 'password'))
           </label>
           <a href="#" class="text-hover">Esqueceu a senha?</a>
         </div>
-        <button class="btn-login">login</button>
+        <button class="btn-login" @click.prevent="loginUser">Login</button>
         <div class="register">
           <p>Não tem conta?<router-link to="/register" class="text-hover">Register</router-link></p>
         </div>
