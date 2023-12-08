@@ -41,9 +41,9 @@ const prev = async () => {
       <PreLoader v-if="showPreloader" />
           <div class="container-page">
           <ul class="pagination mt-6">
-            <li @click="prev" class="page-item">Voltar Página</li>
+            <li @click="prev" class="page-item mt-4 mr-4">Voltar Página</li>
             <li class="mt-4 li">{{ tvStore.currentPage }}</li>
-            <li @click="next" class="page-item mt-4">Próxima Página</li>
+            <li @click="next" class="page-item mt-4 ml-4">Próxima Página</li>
           </ul>
         </div>
     </div>
@@ -90,7 +90,8 @@ const prev = async () => {
   font-weight: bold;
   color: #333;
   background-color: #f8f8f8;
-  padding: 10px;
+  padding: 10px 12px;
+
   border-radius: 5px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -112,13 +113,15 @@ const prev = async () => {
 .pagination {
   list-style: none;
   padding: 0;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page-item {
   display: inline-block;
   margin: 0 5px;
-  padding: 8px 12px;
+  padding: 10px 12px;
   background-color: #000000;
   color: #fff;
   cursor: pointer;
