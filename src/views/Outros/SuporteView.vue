@@ -10,18 +10,18 @@ import FullFooter from '@/components/footer/FullFooter.vue';
             <img src="@/assets/img/suporte.jpg" alt="">
         </div>
         <h1 class="tex-principal">Suporte do FusionCine</h1>
-        <div class="d-flex justify-content-around marginTop">
+        <div class="d-flex justify-content-evenly marginTop">
             <div class="cartaoDiv">
                 <i class="bi bi-credit-card cartao"></i>
-                <p>Assinaturas e cobrança ></p>
+                <p class="text-icon">Assinaturas e cobrança ></p>
             </div>
             <div class="tvDiv">
                 <i class="bi bi-tv tv"></i>
-                <p>Suporte da TV ></p>
+                <p class="text-icon">Suporte da TV ></p>
             </div>
             <div class="laptopDiv">
                 <i class="bi bi-laptop notebook"></i>
-                <p>Serviço e reparos ></p>
+                <p class="text-icon">Serviço e reparos ></p>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@ import FullFooter from '@/components/footer/FullFooter.vue';
                 <p class="mt-4 text-center">Saiba mais sobre os recursos mais recentes e como ir além.
                 </p>
                 <p class="mt-3 text-center text-blue cursor">Inscreva-se</p>
-                <img src="@/assets/img/cinema-midia.jpg" alt="" class="img"/>
+                <img src="@/assets/img/cinema.jpg" alt="" class="img"/>
             </div>
         </div>
         <div class="box-med">
@@ -41,7 +41,7 @@ import FullFooter from '@/components/footer/FullFooter.vue';
             <p class="mt-4 text-center text-blue cursor">Iniciar sessão no Meu suporte</p>
         </div>
         <div class="box-med-3">
-            <div class="mr-3">
+            <div>
                 <h2>Tome cuidado com peças falsificadas</h2>
                 <p>
                 É importante ressaltar que acessórios e dispositivos não originais podem comprometer a experiência de streaming no FusionCine.
@@ -73,7 +73,26 @@ import FullFooter from '@/components/footer/FullFooter.vue';
     text-align: center;
     padding: 20px;
 }
-
+.box-med-3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.tvDiv{
+    text-align: center;
+    padding: 20px;
+}
+.laptopDiv{
+    text-align: center;
+    padding: 20px;
+}
+.text-icon:hover{
+    color: rgb(151, 151, 151);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: ease 0.1s ;
+}
 
 .texto-destaque {
     color: #000000;
@@ -94,7 +113,7 @@ img {
 }
 
 .secton {
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 h1 {
@@ -103,12 +122,11 @@ h1 {
     text-align: center;
 }
 .marginTop {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .container-box {
     background-color: white;
-    margin-top: 100px;
-    padding: 30px;
+    margin-top: 70px;
 }
 
 
@@ -131,4 +149,5 @@ h1 {
 .notebook{
     font-size: 500%;
 }
+
 </style>
