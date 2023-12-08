@@ -1,6 +1,6 @@
 <script setup>
 import { useSearchStore } from '@/stores/search'
-import BoxSearch from './BoxSearch.vue';
+import BoxSearch from './BoxSearch.vue'
 
 const searchStore = useSearchStore()
 </script>
@@ -8,33 +8,37 @@ const searchStore = useSearchStore()
 <template>
   <div class="container-max">
     <div class="box-total">
-      <box-search/>
+      <box-search />
       <div v-for="item in searchStore.searchPerson" :key="item.id" class="card-one">
-          <router-link :to="`/peaple/${item.id}`" class="text-black text-deco">
-        <div class="display">
-          <img
-            :src="
-              item.poster_path
-                ? `https://image.tmdb.org/t/p/w500${item.profile_path}`
-                : ('@/assets/img/spa.jpeg')
-            "
-            alt="Imagem do filme ou série"
-            width="100"
-            class="img"
-          />
-          <div class="text">
-            <p class="name">{{ item.name }}</p>
-            <p class="sinopse">{{ item.overview }}</p>
+        <router-link :to="`/people/${item.id}`" class="text-black text-deco">
+          <div class="display">
+            <img
+              :src="
+                item.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${item.profile_path}`
+                  : '@/assets/img/spa.jpeg'
+              "
+              alt="Imagem do filme ou série"
+              width="100"
+              class="img"
+            />
+            <div class="text">
+              <p class="name">{{ item.name }}</p>
+              <p class="sinopse">{{ item.overview }}</p>
+            </div>
           </div>
-        </div>
-          </router-link>
+        </router-link>
       </div>
     </div>
     <div class="NextBack">
-      <button @click="searchStore.backPage" :disabled="searchStore.currentPage <= 1" class="mr-3">
+      <button
+        @click="searchStore.backPage"
+        :disabled="searchStore.currentPage <= 1"
+        class="button prev"
+      >
         ← Anterior
       </button>
-      <button @click="searchStore.nextPage">Próxima →</button>
+      <button @click="searchStore.nextPage" class="button next">Próxima →</button>
     </div>
   </div>
 </template>
@@ -44,7 +48,6 @@ const searchStore = useSearchStore()
   max-width: 1420px;
   margin: 0 auto;
 }
-
 
 .card-one {
   display: flex;
@@ -58,16 +61,40 @@ const searchStore = useSearchStore()
   display: flex;
   align-items: center;
 }
-.text-deco{
+.text-deco {
   text-decoration: none;
 }
 .text {
   margin-left: 1rem;
 }
 .NextBack {
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: -50px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
 }
 
 table {

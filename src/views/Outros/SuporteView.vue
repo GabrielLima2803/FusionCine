@@ -6,16 +6,22 @@ import FullFooter from '@/components/footer/FullFooter.vue';
 <template>
     <header-principal />
     <div class="container-max">
-        <h1>Suporte do FusionCine</h1>
-        <div class="d-flex justify-content-around marginTop">
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+        <div>
+            <img src="@/assets/img/suporte.jpg" alt="">
+        </div>
+        <h1 class="tex-principal">Suporte do FusionCine</h1>
+        <div class="d-flex justify-content-evenly marginTop">
+            <div class="cartaoDiv">
+                <i class="bi bi-credit-card cartao"></i>
+                <p class="text-icon">Assinaturas e cobrança ></p>
             </div>
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+            <div class="tvDiv">
+                <i class="bi bi-tv tv"></i>
+                <p class="text-icon">Suporte da TV ></p>
             </div>
-            <div class="box">
-                <i class="bi bi-chat-left-text"></i>
+            <div class="laptopDiv">
+                <i class="bi bi-laptop notebook"></i>
+                <p class="text-icon">Serviço e reparos ></p>
             </div>
         </div>
     </div>
@@ -26,7 +32,7 @@ import FullFooter from '@/components/footer/FullFooter.vue';
                 <p class="mt-4 text-center">Saiba mais sobre os recursos mais recentes e como ir além.
                 </p>
                 <p class="mt-3 text-center text-blue cursor">Inscreva-se</p>
-                <img src="@/assets/img/cinema-midia.jpg" alt="" class="img"/>
+                <img src="@/assets/img/cinema.jpg" alt="" class="img"/>
             </div>
         </div>
         <div class="box-med">
@@ -35,7 +41,7 @@ import FullFooter from '@/components/footer/FullFooter.vue';
             <p class="mt-4 text-center text-blue cursor">Iniciar sessão no Meu suporte</p>
         </div>
         <div class="box-med-3">
-            <div class="mr-3">
+            <div>
                 <h2>Tome cuidado com peças falsificadas</h2>
                 <p>
                 É importante ressaltar que acessórios e dispositivos não originais podem comprometer a experiência de streaming no FusionCine.
@@ -54,43 +60,43 @@ import FullFooter from '@/components/footer/FullFooter.vue';
 
 <style scoped>
 .container-max {
-    max-width: 1420px;
     margin: 0 auto;
-    margin-top: 125px;
+    background-color: rgb(240, 240, 240);
+    width: 100%;
+    height: 100%; 
 }
+.text-principal{
+    padding: 30px;
+}
+
+.cartaoDiv{
+    text-align: center;
+    padding: 20px;
+}
+.box-med-3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.tvDiv{
+    text-align: center;
+    padding: 20px;
+}
+.laptopDiv{
+    text-align: center;
+    padding: 20px;
+}
+.text-icon:hover{
+    color: rgb(151, 151, 151);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: ease 0.1s ;
+}
+
 .texto-destaque {
     color: #000000;
     font-weight: bold;
-}
-.box-med{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 200px;
-    margin-top: 100px;
-}
-.box-med-2{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 500px;
-    margin-top: 30px;
-}
-.box-med-3{
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ffffff;
-    color: black;
-    width: 1000px;
-    border-radius: 10px;
-    height: 300px;
-    margin-top: 30px;
 }
 .cursor{
     cursor: pointer;
@@ -107,7 +113,7 @@ img {
 }
 
 .secton {
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 h1 {
@@ -115,29 +121,12 @@ h1 {
     font-weight: bold;
     text-align: center;
 }
-
-.box {
-    background-color: #f5f5f7;
-    padding: 40px 8.33%;
-    width: 300px;
-    cursor: pointer;
-    height: 150px;
-    transition: all .2s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
 .marginTop {
-    margin-top: 100px;
+    margin-top: 30px;
 }
-
-.box:hover {
-    transform: scale(1.1);
-}
-
 .container-box {
-    background-color: rgb(219, 219, 219);
-    margin-top: 100px;
-    padding: 30px;
+    background-color: white;
+    margin-top: 70px;
 }
 
 
@@ -151,6 +140,14 @@ h1 {
     height: 760px;
     overflow: hidden;
 }
-
+.cartao{
+    font-size: 500%;
+}
+.tv{
+    font-size: 500%;
+}
+.notebook{
+    font-size: 500%;
+}
 
 </style>

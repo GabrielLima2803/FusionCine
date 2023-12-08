@@ -1,9 +1,37 @@
 <script setup>
+import { ref } from 'vue';
+import axios from 'axios';
 
+const username = ref('');
+const email = ref('');
+const password = ref('');
+const confirmPassword = ref('');
+
+const registerUser = async () => {
+    try {
+        // Verifique se as senhas coincidem
+        if (password.value !== confirmPassword.value) {
+            throw new Error('As senhas não coincidem');
+        }
+
+        const userData = {
+            username: username.value,
+            email: email.value,
+            password: password.value,
+        };
+
+        const response = await axios.post('http://localhost:3000/register', userData);
+
+        console.log('Usuário registrado com sucesso:', response.data);
+
+    } catch (error) {
+        console.error('Erro ao registrar o usuário:', error.message);
+    }
+};
 </script>
 
 <template id="body">
-<div class="container">
+    <div class="container">
         <div class="form-image">
             <img src="@/assets/img/auth/register/undraw_shopping_re_3wst.svg" alt="">
         </div>
@@ -19,29 +47,28 @@
                 </div>
                 <div class="input-group">
                     <div class="input-box">
-                        <label for="firstname">Nome de Usuário</label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu usuário" required>
+                        <label for="username">Nome de Usuário</label>
+                        <input v-model="username" id="username" type="text" name="username" placeholder="Digite seu usuário" required>
                     </div>
 
                     <div class="input-box">
                         <label for="email">E-mail</label>
-                        <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+                        <input v-model="email" id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
                     </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+                        <input v-model="password" id="password" type="password" name="password" placeholder="Digite sua senha" required>
                     </div>
 
                     <div class="input-box">
                         <label for="confirmPassword">Confirme sua Senha</label>
-                        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
+                        <input v-model="confirmPassword" id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
                     </div>
-
                 </div>
 
                 <div class="continue-button">
-                    <button><a href="#">Continuar</a> </button>
+                    <button @click.prevent="registerUser">Continuar</button>
                 </div>
             </form>
         </div>
@@ -71,7 +98,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:  #414e5c;;
+    background-color: #414e5c;
+    ;
     padding: 1rem;
 }
 
@@ -102,14 +130,15 @@
 
 .login-button button {
     border: none;
-    background-color: #191F26;;
+    background-color: #191F26;
+    ;
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .login-button button:hover {
-    background-color:rgba(33, 31, 75, 0.945);
+    background-color: rgba(33, 31, 75, 0.945);
 }
 
 .login-button button a {
@@ -123,7 +152,8 @@
     display: block;
     width: 5rem;
     height: 0.3rem;
-    background-color: #191F26;;
+    background-color: #191F26;
+    ;
     margin: 0 auto;
     position: absolute;
     border-radius: 10px;
@@ -152,11 +182,12 @@
 }
 
 .input-box input:hover {
-    background-color:rgba(218, 218, 218, 0.945);
+    background-color: rgba(218, 218, 218, 0.945);
 }
 
 .input-box input:focus-visible {
-    outline: 1px solid #191F26;;
+    outline: 1px solid #191F26;
+    ;
 }
 
 .input-box label,
@@ -196,7 +227,8 @@
     width: 100%;
     margin-top: 2.5rem;
     border: none;
-    background-color: #191F26;;
+    background-color: #191F26;
+    ;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
@@ -218,9 +250,11 @@
     .form-image {
         display: none;
     }
+
     .container {
         width: 50%;
     }
+
     .form {
         width: 100%;
     }
@@ -231,6 +265,7 @@
         width: 90%;
         height: auto;
     }
+
     .input-group {
         flex-direction: column;
         z-index: 5;
@@ -239,17 +274,20 @@
         overflow-y: scroll;
         flex-wrap: nowrap;
     }
+
     .gender-inputs {
         margin-top: 2rem;
     }
+
     .gender-group {
         flex-direction: column;
     }
+
     .gender-title h6 {
         margin: 0;
     }
+
     .gender-input {
         margin-top: 0.5rem;
     }
-}
-</style>
+}</style>

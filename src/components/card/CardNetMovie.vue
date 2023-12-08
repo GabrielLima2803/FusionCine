@@ -1,23 +1,15 @@
 <script setup>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useMovieStore } from '@/stores/movie';
 
 const movieStore = useMovieStore()
 
-const infoVisible = ref(-1) 
 onMounted(async () => {
   await movieStore.getAllMovie()
 })
 
-const showInfo = (index) => {
-  infoVisible.value = index
-}
-
-const hideInfo = () => {
-  infoVisible.value = -1
-}
 const first9Movies = computed(() => movieStore.movies.slice(0, 9))
 
 </script>
@@ -28,43 +20,19 @@ const first9Movies = computed(() => movieStore.movies.slice(0, 9))
     <div class="container-card">
       <carousel :items-to-show="2.8" class="Margin">
         <slide v-for="(movie, index) in first9Movies" :key="movie.id">
-          <div class="img-card">
-            <div class="img-container">
-              <div class="counter">
-                <p>{{ `${index + 1}` }}</p>
-              </div>
-              <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"  :alt="movie.title" width="165"
+          <router-link class="underline" :to="`/movie/${movie.id}`">
+            <div class="img-card">
+              <div class="img-container">
+                <div class="counter">
+                  <p>{{ `${index + 1}` }}</p>
+                </div>
+                <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"  :alt="movie.title" width="165"
                 class="z-3 img" @mouseover="showInfo(index)" @mouseout="hideInfo(index)" />
-              <div v-if="infoVisible === index" class="info info-transition active">
-
-                <div class="container-trailer">
-                  <p>sdas</p>
-                </div>
-                <div class="container-bot">
-                  <div class="container-icon display">
-                    <i class="bi bi-play-fill text-aling"></i>
-                    <i class="bi bi-plus-circle text-aling"></i>
-                    <i class="bi bi-heart-fill text-aling"></i>
-                  </div>
-                  <div class="container-info">
-                    <p class="text-green mt-3 text-aling">96% relevante</p>
-                    <div class="display mt-3">
-                      <p class="idade">14</p>
-                      <p class="ml-2 temp">5 temporadas</p>
-                      <i class="bi bi-badge-hd-fill ml-2 icon-hd"></i>
-                    </div>
-                  </div>
-                  <div class="container-tv display mt-5">
-                    <p>{{ movie.title }}</p>
-                    <p class="ml-2"> • Tipo:</p>
-                    <p class="ml-2"> • Genêro:</p>
-                  </div>
-                </div>
 
               </div>
             </div>
-          </div>
-        </slide>
+          </router-link>
+          </slide>
         <template #addons>
           <navigation />
         </template>
@@ -76,6 +44,13 @@ const first9Movies = computed(() => movieStore.movies.slice(0, 9))
 <style scoped>
 .container-bot {
   padding: 15px;
+}
+.underline{
+  text-decoration: none;
+}
+.img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 .text-aling{
   text-align: start;
