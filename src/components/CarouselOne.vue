@@ -1,47 +1,45 @@
 <script setup>
-// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
-import {ref} from 'vue'
-
-const pictures = ref([
-  {
-    'src': 'https://ottvsimg.ottvs.com.br/res/banner/7ca84d92-252f-4cb7-87b2-401a8725dba2.jpg',
-    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
-  },
-  {
-    'src': 'https://ottvsimg.ottvs.com.br/res/banner/72d3acaf-87a4-4d28-9a77-2424dc9da85c.jpg',
-    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
-  },
-  {
-    'src': 'https://ottvsimg.ottvs.com.br/res/banner/c721686a-64c8-415d-93af-c50555d10b6a.jpg',
-    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
-  },
-  {
-    'src': 'https://ottvsimg.ottvs.com.br/res/banner/4ed2b134-5d16-4be0-bc73-4cea3bfaa15a.jpg',
-    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
-  },
-  {
-    'src': 'https://ottvsimg.ottvs.com.br/res/banner/67f6300c-5bae-4c48-ba3f-994f563f3729.jpg',
-    'alt': 'https://raw.githubusercontent.com/koehlersimon/fallback/master/Resources/Public/Images/placeholder.jpg',
-  },
-])
+import { ref } from 'vue';
 </script>
 
 <template>
-  <carousel :items-to-show="1">
-    <slide v-for="slide in pictures" :key="slide">
-      <img :src="slide.src" :alt="slide.alt" class="img"/>
-    </slide>
+<div>
+    <div class="parallax">
+      <video autoplay muted loop id="myVideo">
+        <source src="https://www.apple.com/105/media/us/apple-tv-plus/2022/4114721e-12d2-4260-87c4-678589d5f804/anim/supercut/large.mp4" type="video/mp4">
+      </video>
+    </div>
 
-    <template #addons>
-      <navigation />
-      <pagination />
-    </template>
-  </carousel>
+    <div class="content">
+      <div style="height:1200px;background-color:black;font-size:36px">
+        Scroll Up and Down this page to see the parallax scrolling effect.
+        This div is just here to enable scrolling.
+        Tip: Try to remove the background-attachment property to remove the scrolling effect.
+      </div>
+    </div>
+
+    <div class="parallax"></div>
+  </div>
 </template>
 
 <style scoped>
-.img{
+.parallax {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#myVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
 }
 </style>
