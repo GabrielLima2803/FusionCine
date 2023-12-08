@@ -78,9 +78,13 @@ const prev = async () => {
         <v-card>
         <v-layout>
           <v-navigation-drawer expand-on-hover rail>
-            <v-list density="compact" nav>
-              <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)">
-                <template #title>{{ genre.name }}</template>
+            <v-list density="compact" nav class="margin-top">
+              <v-list-item prepend-icon="bi bi-film" v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)" >
+                <template #title >
+                  <p >
+                    {{ genre.name }}
+                  </p>
+                </template>
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
@@ -96,6 +100,9 @@ const prev = async () => {
 </template>
 
 <style scoped>
+.margin-top{
+  margin-top: 90px;
+}
 .movie-genres {
   padding: 0.2rem 0.5rem;
   color: #666;
