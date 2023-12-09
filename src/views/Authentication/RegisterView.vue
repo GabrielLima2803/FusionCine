@@ -6,10 +6,11 @@ const username = ref('');
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
+const registrationSuccess = ref(false);
+const registrationError = ref(''); 
 
 const registerUser = async () => {
     try {
-        // Verifique se as senhas coincidem
         if (password.value !== confirmPassword.value) {
             throw new Error('As senhas não coincidem');
         }
@@ -19,13 +20,14 @@ const registerUser = async () => {
             email: email.value,
             password: password.value,
         };
-
         const response = await axios.post('http://localhost:3000/register', userData);
-
         console.log('Usuário registrado com sucesso:', response.data);
 
+        registrationSuccess.value = true;
+        registrationError.value = ''; 
     } catch (error) {
         console.error('Erro ao registrar o usuário:', error.message);
+        registrationError.value = 'Erro ao registrar o usuário. Por favor, tente novamente, Usuário com o mesmo nome ja cadastrado.';
     }
 };
 </script>
@@ -70,6 +72,12 @@ const registerUser = async () => {
                 <div class="continue-button text-white">
                     <button @click.prevent="registerUser">Continuar</button>
                 </div>
+                <div v-if="registrationError" class="error-message">
+            {{ registrationError }}
+        </div>
+                <div v-if="registrationSuccess" class="success-message">
+            Parabéns! O registro foi bem-sucedido.
+        </div>
             </form>
         </div>
     </div>
@@ -87,7 +95,20 @@ const registerUser = async () => {
 .text-white{
     color: white;
 }
-
+.error-message {
+    color: #ff6347; 
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.success-message {
+    color: rgb(0, 61, 28);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
 .container {
     width: 80%;
     height: 80vh;
