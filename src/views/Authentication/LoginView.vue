@@ -2,8 +2,10 @@
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 
-const username = ref('');
-const password = ref('');
+const apiURL = 'http://localhost:3000/login';
+
+const usernameRef = ref('');
+const passwordRef = ref('');
 const showPassword = ref(false);
 const loggedInUser = ref(null);
 const showLoggedInMessage = ref(false);
@@ -19,27 +21,33 @@ const inputType = computed(() => (showPassword.value ? 'text' : 'password'));
 const loginUser = async () => {
   try {
     const userData = {
-      username: username.value,
-      password: password.value,
+      username: usernameRef.value,
+      password: passwordRef.value,
     };
 
-    const response = await axios.post('http://localhost:3000/login', userData);
+    console.log('Credenciais:', userData);
+    const response = await axios.post(apiURL, userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     if (response.data.token) {
       loggedInUser.value = response.data.username;
       showLoggedInMessage.value = true;
       isLoggedIn.value = true;
-      errorMessage.value = ''; 
+      errorMessage.value = '';
       localStorage.setItem('loggedInUser', response.data.username);
       localStorage.setItem('isLoggedIn', 'true');
-
-      console.log('Usuário autenticado com sucesso:', response.data);
+      localStorage.setItem('usernameRef');
     } else {
       errorMessage.value = 'Credenciais inválidas. Tente novamente.';
     }
+
+    console.log(response.data);
   } catch (error) {
     console.error('Erro ao autenticar o usuário:', error.message);
-    errorMessage.value = 'Erro ao autenticar. Tente novamente mais tarde.';
+    errorMessage.value = 'Credenciais inválidas. Tente novamente.';
   }
 };
 
@@ -47,41 +55,45 @@ const logoutUser = () => {
   console.log('Função logoutUser chamada.');
   localStorage.removeItem('loggedInUser');
   localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('usernameRef');
   loggedInUser.value = null;
   showLoggedInMessage.value = false;
   isLoggedIn.value = false;
 };
+
 onMounted(() => {
   const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
   const storedUsername = localStorage.getItem('loggedInUser');
+  const UsernameRef = localStorage.getItem('usernameRef');
 
   if (storedIsLoggedIn === 'true' && storedUsername) {
     loggedInUser.value = storedUsername;
     showLoggedInMessage.value = true;
     isLoggedIn.value = true;
+    usernameRef.value = UsernameRef; 
   }
 });
 </script>
 
 
 <template>
-  <div id="template">
+  <div id="template" v-if="!showLoggedInMessage">
     <div class="container-login" >
       <form class="form-section">
         <h1>Login</h1>
         <div class="input-box">
-          <input v-model="username" type="text" required />
-          <label>Insira seu nome de usuário</label>
+          <input v-model="usernameRef" type="text" required />
+          <label>Insira seu username</label>
         </div>
 
         <div class="input-box">
-          <input v-model="password" :type="inputType" required />
+          <input v-model="passwordRef" :type="inputType" required />
           <label>Insira sua senha</label>
           <div class="eye-wrapper" @click="showHide">
             <span class="close" v-if="!showPassword"> <i class="bi bi-eye-slash"></i> </span>
             <span class="open" v-else> <i class="bi bi-eye"></i> </span>
           </div>
-   
+
         </div>
         <div>
         </div>
@@ -93,10 +105,7 @@ onMounted(() => {
           <a href="#" class="text-hover">Esqueceu a senha?</a>
         </div>
         <button class="btn-login" @click.prevent="loginUser">Login</button>
-        <div class="loggedInMessage" >
-      <p>{{ loggedInUser }} logado com sucesso!</p>
-      <button @click="logoutUser">Logout</button>
-    </div>
+
         <div class="register">
           <p>Não tem conta?<router-link to="/register" class="text-hover">Register</router-link></p>
         </div>
@@ -104,11 +113,21 @@ onMounted(() => {
       <div class="mt-5">
         <router-link to="/" class="resetRouter"> Home </router-link>
       </div>
+      <div v-if="errorMessage || !showLoggedInMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
     </div>
   </div>
+  <div class="container-user">
+      <div class="loggedInMessage" v-if="showLoggedInMessage">
+        <p class="bemVindo">Seja Bem-Vindo, {{ usernameRef }}</p>        
+          <button @click="logoutUser" class="logout">Logout</button>
+        </div>
 
+  </div>
 </template>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -122,15 +141,45 @@ onMounted(() => {
   background-color: #191f26;
   background-size: cover;
 }
-
+.error-message {
+  margin-top: 1em;
+  border-radius: 0.3em;
+  text-align: center;
+  color: #ff6347; 
+}
+.container-user{
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center;
+}
 .resetRouter {
   color: black;
   text-decoration: none;
 }
-
+.logout{
+  background-color: #fff;
+  color: #000000;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: lighter;
+  text-transform: uppercase;
+  margin-top: 20px;
+  border: 0.5px solid #000000;
+}
 .resetRouter:hover {
   text-decoration: underline;
 
+}
+.bemVindo {
+  text-align: center;
+  text-decoration: none;
+  color: #43055d;
+  font-size: 180%;
+  font-weight: bold;
 }
 
 .container {
@@ -164,15 +213,15 @@ onMounted(() => {
   text-align: center;
   border: 0.1em solid #ffffff80;
 }
+
 .loggedInMessage {
   margin-top: 1em;
-  background-color: #4caf50;
   padding: 0.5em;
   border-radius: 0.3em;
-  color: white;
   text-align: center;
   display: inline-block;
 }
+
 .container-login .form-section {
   display: flex;
   flex-direction: column;
@@ -305,4 +354,5 @@ onMounted(() => {
 
 p {
   margin: 0;
-}</style>
+}
+</style>
