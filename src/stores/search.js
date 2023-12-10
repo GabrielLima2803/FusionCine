@@ -52,6 +52,20 @@ export const useSearchStore = defineStore('search', () => {
     SearchTv( state.currentPageTv + 1);
     SearchPerson( state.currentPagePerson + 1);
   };
+  const nextPageMovie = () => {
+    console.log("Chamando A Funcão")
+      state.currentPage++;
+    console.log("Medio Da Função")
+      SearchMulti(state.currentPage);
+    console.log("Fim da Função")
+
+    
+  };
+  const backPageMovie = () => {
+    state.currentPage--;
+    SearchMulti(state.currentPage);
+  
+};
 
   const backPage = async () => {
     SearchMulti( state.currentPage - 1);
@@ -69,6 +83,8 @@ export const useSearchStore = defineStore('search', () => {
     currentPage: state.currentPage,
     searchPerson,
     SearchPerson,
+    nextPageMovie,
+    backPageMovie,
     currentPageTv: state.currentPageTv,
     currentPagePerson: state.currentPagePerson,
   };
