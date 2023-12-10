@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
-
+import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
+import FullFooter from '@/components/footer/FullFooter.vue';
 const apiURL = 'http://localhost:3000/login';
 
 const usernameRef = ref('');
@@ -102,7 +103,9 @@ onMounted(() => {
             <input type="checkbox" id="remember" />
             <p>Remember me</p>
           </label>
+          <router-link to="/forget" class="resetRouter">
           <a href="#" class="text-hover">Esqueceu a senha?</a>
+           </router-link>
         </div>
         <button class="btn-login" @click.prevent="loginUser">Login</button>
 
@@ -120,11 +123,12 @@ onMounted(() => {
     </div>
   </div>
   <div class="container-user">
+    <header-principal/>
       <div class="loggedInMessage" v-if="showLoggedInMessage">
         <p class="bemVindo">Seja Bem-Vindo, {{ usernameRef }}</p>        
           <button @click="logoutUser" class="logout">Logout</button>
         </div>
-
+        <full-footer/>
   </div>
 </template>
 
