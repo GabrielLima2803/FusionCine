@@ -3,11 +3,11 @@ import { useSearchStore } from '@/stores/search'
 import BoxSearch from './BoxSearch.vue';
 const searchStore = useSearchStore()
 const next = async () => {
-  await searchStore.nextPage(searchStore.query);
+  await searchStore.nextPageMovie();
 };
 
 const prev = async () => {
-  await searchStore.backPage(searchStore.query);
+  await searchStore.backPageMovie();
 };
 </script>
 
