@@ -7,8 +7,12 @@
             <router-link to="/"><i class="bi bi-house-door color-house"></i></router-link>
         </div>
         <div class="linksTop">
+            <router-link class="text-black text" to="/suporte">
             <span class="borde">Ajuda</span>
+            </router-link>
+            <router-link to="/register" class="text-black text">
             <span class="borde">Junte-se a nós</span>
+            </router-link>
             <router-link to="/login" class="text-black text">
                 <span class="borde-Ultimo">Entrar</span>
             </router-link>
