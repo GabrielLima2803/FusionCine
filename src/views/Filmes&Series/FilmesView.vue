@@ -17,10 +17,10 @@ onMounted(async () => {
 })
 
 const listMovies = async (genreId) => {
-  showPreloader.value = true
-  await movieStore.getAllMovie(genreId)
-  showPreloader.value = false
-}
+  showPreloader.value = true;
+  await movieStore.getAllMovie(genreId);
+  showPreloader.value = false;
+};
 const formatYear = (date) => new Date(date).getFullYear()
 
 const next = async () => {
@@ -47,6 +47,7 @@ const prev = async () => {
             <li @click="next" class="page-item mt-4 ml-4">Próxima Página</li>
           </ul>
         </div>
+    
     </div>
     <div class="img-container">
       <div class="movie-list">
@@ -84,6 +85,7 @@ const prev = async () => {
                   <p >
                     {{ genre.name }}
                   </p>
+
                 </template>
               </v-list-item>
             </v-list>

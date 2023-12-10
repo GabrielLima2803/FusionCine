@@ -4,33 +4,38 @@ import api from '@/plugins/axios'
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
+
 export const useMovieStore = defineStore('movie', () => {
   const state = reactive({
     movies: [],
     showMoreCast: false, 
     currentPage: 1,
     totalPages: 0,
+    selectedGenreId: null, // Add this line
   });
+
 
   const movies = computed(() => state.movies);
   const currentPage = computed(() => state.currentPage);
 
-  const getAllMovie = async (genreId = null, page = 1) => {
+  const getAllMovie = async (page = 1) => {
     try {
       const params = {
         language: 'pt-BR',
         page: page,
-        with_genres: genreId
+        with_genres: state.selectedGenreId, 
+        primary_release_year: state.selectedYear,
       };
   
       const response = await api.get('discover/movie', { params });
       state.movies = response.data.results;
-      state.totalPages = response.data.total_pages; 
+      state.totalPages = response.data.total_pages;
     } catch (error) {
       console.error('Erro ao buscar os filmes:', error);
     }
   };
   
+
   const formatDate = (date) => {
     const formattedDate = format(new Date(date), 'dd MMMM yyyy', { locale: ptBR });
     return formattedDate.replace(/ /g, ' de ');
