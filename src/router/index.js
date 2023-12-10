@@ -6,6 +6,7 @@ import SeriesView from '@/views/Filmes&Series/SeriesView.vue'
 import SoloSerieView from '@/views/Filmes&Series/SoloSerieView.vue'
 import LoginView from '@/views/Authentication/LoginView.vue'
 import ForgetView from '@/views/Authentication/ForgetView.vue'
+import ResetView from '@/views/Authentication/ResetView.vue'
 import RegisterView from '@/views/Authentication/RegisterView.vue'
 import PessoasView from '@/views/Outros/PessoasView.vue'
 import SoloPeopleView from '@/views/Outros/SoloPeopleView.vue'
@@ -96,6 +97,11 @@ const router = createRouter({
       path: '/forget',
       name: 'forget',
       component: ForgetView
+    },
+    {
+      path: '/resetP',
+      name: 'resetP',
+      component: ResetView
     }
   ]
 })
