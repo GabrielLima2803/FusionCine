@@ -1,36 +1,10 @@
-<template>
-  <header-principal/>
-  <div class="margin">
-    <div class="row">
-      <h1>Esqueci a Senha</h1>
-      <h6 class="information-text mt-4">Digite seu nome de usuário registrado para redefinir sua senha.</h6>
-      <form @submit.prevent="forgotPassword">
-        <div class="form-group">
-          <input type="text" v-model="username" name="username" id="username" required>
-          <p><label for="username">Username</label></p>
-          <button type="submit">Enviar Solicitação</button>
-        </div>
-      </form>
-      <div class="footer">
-        <div v-if="resetToken">
-          <p>Token de redefinição de senha:</p>
-          <pre>{{ resetToken }}</pre>
-          <p>Copie este token para usar durante a redefinição de senha.</p>
-          <button @click="goToResetPage" class="mt-5">Ir para a página de redefinição</button>
-        </div>
-        <div v-if="error" class="error-message">
-          <p>{{ errorMessage }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <full-footer/>
-</template>
 
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
+import FullFooter from '@/components/footer/FullFooter.vue';
 
 const router = useRouter();
 const username = ref('');
@@ -64,8 +38,36 @@ const goToResetPage = () => {
 };
 </script>
 
+<template>
+  <header-principal/>
+  <div class="margin">
+    <div class="row">
+      <h1>Esqueci a Senha</h1>
+      <h6 class="information-text mt-4">Digite seu nome de usuário registrado para redefinir sua senha.</h6>
+      <form @submit.prevent="forgotPassword">
+        <div class="form-group">
+          <input type="text" v-model="username" name="username" id="username" required>
+          <p><label for="username">Username</label></p>
+          <button type="submit">Enviar Solicitação</button>
+        </div>
+      </form>
+      <div class="footer">
+        <div v-if="resetToken">
+          <p>Token de redefinição de senha:</p>
+          <pre>{{ resetToken }}</pre>
+          <p>Copie este token para usar durante a redefinição de senha.</p>
+          <button @click="goToResetPage" class="mt-5">Ir para a página de redefinição</button>
+        </div>
+        <div v-if="error" class="error-message">
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <full-footer/>
+</template>
+
 <style scoped>
-/* styles.css */
 
 .margin{
   margin-top: 200px;
