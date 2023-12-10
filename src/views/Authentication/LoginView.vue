@@ -2,7 +2,6 @@
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 import HeaderPrincipal from '@/components/header/HeaderPrincipal.vue';
-import FullFooter from '@/components/footer/FullFooter.vue';
 const apiURL = 'http://localhost:3000/login';
 
 const usernameRef = ref('');
@@ -122,13 +121,13 @@ onMounted(() => {
 
     </div>
   </div>
-  <div class="container-user">
+  <div class="container-user" v-if="showLoggedInMessage">
     <header-principal/>
-      <div class="loggedInMessage" v-if="showLoggedInMessage">
+      <div class="loggedInMessage" >
         <p class="bemVindo">Seja Bem-Vindo, {{ usernameRef }}</p>        
           <button @click="logoutUser" class="logout">Logout</button>
         </div>
-        <full-footer/>
+        <img src="https://usagif.com/wp-content/uploads/2021/4fh5wi/bemvindo-15.gif" alt="Bem-vindo Gif" />
   </div>
 </template>
 
@@ -173,6 +172,9 @@ onMounted(() => {
   text-transform: uppercase;
   margin-top: 20px;
   border: 0.5px solid #000000;
+}
+img{
+  border-radius: 10px;
 }
 .resetRouter:hover {
   text-decoration: underline;
@@ -219,7 +221,7 @@ onMounted(() => {
 }
 
 .loggedInMessage {
-  margin-top: 1em;
+  margin-top: 5em;
   padding: 0.5em;
   border-radius: 0.3em;
   text-align: center;
