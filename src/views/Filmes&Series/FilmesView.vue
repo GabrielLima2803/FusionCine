@@ -18,7 +18,8 @@ onMounted(async () => {
 
 const listMovies = async (genreId) => {
   showPreloader.value = true;
-  await movieStore.getAllMovie(genreId);
+  movieStore.setSelectedGenreId(genreId);
+  await movieStore.getAllMovie();
   showPreloader.value = false;
 };
 const formatYear = (date) => new Date(date).getFullYear()
