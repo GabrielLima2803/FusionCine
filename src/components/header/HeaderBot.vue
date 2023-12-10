@@ -59,14 +59,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.sticky {
-  /* position: sticky;
-    top: 0; */
-}
+
 
 .header.hidden {
   top: -80px;
-  /* Esconda o cabeçalho movendo-o para cima */
 }
 .margin-img{
   margin-top: 15px;
