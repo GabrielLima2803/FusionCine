@@ -17,13 +17,12 @@ export const useMovieStore = defineStore('movie', () => {
 
   const movies = computed(() => state.movies);
   const currentPage = computed(() => state.currentPage);
-
   const getAllMovie = async (page = 1) => {
     try {
       const params = {
         language: 'pt-BR',
         page: page,
-        with_genres: state.selectedGenreId, 
+        with_genres: state.selectedGenreId,
         primary_release_year: state.selectedYear,
       };
   
@@ -69,22 +68,21 @@ export const useMovieStore = defineStore('movie', () => {
     return keywords.keywords.map((keyword) => keyword.name);
   };
 
-  const getMoviesByPage = (page) => {
-    state.currentPage = page;
-    getAllMovie(null, page);
-  };
-
   const nextPage = () => {
     if (state.currentPage < state.totalPages) {
-      getMoviesByPage(state.currentPage + 1);
+      state.currentPage++;
+      getAllMovie(state.currentPage);
     }
   };
-  
+  const setSelectedGenreId = (genreId) => {
+    state.selectedGenreId = genreId;
+  };
   const prevPage = () => {
     if (state.currentPage > 1) {
-      getMoviesByPage(state.currentPage - 1);
+      state.currentPage--;
+      getAllMovie(state.currentPage);
     }
-  };  
+  };
   return {
     movies,
     getAllMovie,
@@ -97,5 +95,6 @@ export const useMovieStore = defineStore('movie', () => {
     prevPage,
     nextPage,
     currentPage,
+    setSelectedGenreId, // Adicione esta linha
   };
 });
