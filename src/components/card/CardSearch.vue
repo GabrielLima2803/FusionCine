@@ -2,6 +2,13 @@
 import { useSearchStore } from '@/stores/search'
 import BoxSearch from './BoxSearch.vue';
 const searchStore = useSearchStore()
+const next = async () => {
+  await searchStore.nextPage(searchStore.query);
+};
+
+const prev = async () => {
+  await searchStore.backPage(searchStore.query);
+};
 </script>
 
 <template>
@@ -32,11 +39,11 @@ const searchStore = useSearchStore()
       </div>
     </div>
     <div class="NextBack">
-    <button @click="searchStore.backPage" :disabled="searchStore.currentPage <= 1" class="button prev">
+    <button @click="prev" :disabled="searchStore.currentPage <= 1" class="button prev">
       ← Anterior
     </button>
     {{ searchStore.currentPage }}
-    <button @click="searchStore.nextPage" class="button next">
+    <button @click="next" class="button next">
       Próxima →
     </button>
   </div>
