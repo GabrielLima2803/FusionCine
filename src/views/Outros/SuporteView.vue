@@ -41,9 +41,9 @@ import FullFooter from '@/components/footer/FullFooter.vue';
             <p class="mt-4 text-center text-blue cursor">Iniciar sessão no Meu suporte</p>
         </div>
         <div class="box-med-3">
-            <div>
+            <div class="mt-5">
                 <h2>Tome cuidado com peças falsificadas</h2>
-                <p>
+                <p class="mt-5">
                 É importante ressaltar que acessórios e dispositivos não originais podem comprometer a experiência de streaming no FusionCine.
             </p>
             <p>
